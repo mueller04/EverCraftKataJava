@@ -46,7 +46,6 @@ public class EverCraftTest {
     @Test
     public void canSetAlignment(){
         //Arrange
-
         EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
 
         //Act
@@ -58,7 +57,16 @@ public class EverCraftTest {
         assertEquals(expectedAlignment, result);
     }
 
+    public void armorDefaultsTo10(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
 
+        //Act
+        int result = everCharacter.getArmor();
+
+        //Assert
+        assertEquals(10, result);
+    }
 
 
 }

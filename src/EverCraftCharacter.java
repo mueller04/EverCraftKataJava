@@ -7,12 +7,14 @@ public class EverCraftCharacter {
 
     private String name;
     private Alignment alignment;
+    private int armor = 10;
 
     public EverCraftCharacter(String name, Alignment alignment){
         this.name = name;
         this.alignment = alignment;
     }
 
+    //Getters and Setters
     public String getName(){
         return name;
     }
@@ -27,5 +29,9 @@ public class EverCraftCharacter {
 
     public void setAlignment(Alignment alignment){
         this.alignment = alignment;
+    }
+
+    public int getArmor(){
+        return armor;
     }
 }
