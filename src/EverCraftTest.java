@@ -1,7 +1,15 @@
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class EverCraftTest {
+
+    Play play;
+
+    @Before
+    public void BeforeMethodClass() {
+        play = new Play();
+    }
 
     @Test
     public void canGetCharacterName(){
@@ -57,6 +65,7 @@ public class EverCraftTest {
         assertEquals(expectedAlignment, result);
     }
 
+    @Test
     public void armorDefaultsTo10(){
         //Arrange
         EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
@@ -67,6 +76,32 @@ public class EverCraftTest {
         //Assert
         assertEquals(10, result);
     }
+
+    @Test
+    public void hitPointsDefaultsTo5(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+
+        //Act
+        int result = everCharacter.getHitPoints();
+
+        //Assert
+        assertEquals(5, result);
+    }
+
+    @Test
+    public void rollHitsIfMeetsOpponentsArmorClass(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+
+        //Act
+        String result = play.roll(everCharacter, 10);
+
+        //Assert
+        assertEquals("It's a hit", result);
+    }
+
+
 
 
 }

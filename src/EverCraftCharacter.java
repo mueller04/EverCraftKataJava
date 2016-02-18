@@ -8,6 +8,7 @@ public class EverCraftCharacter {
     private String name;
     private Alignment alignment;
     private int armor = 10;
+    private int hitPoints = 5;
 
     public EverCraftCharacter(String name, Alignment alignment){
         this.name = name;
@@ -33,5 +34,9 @@ public class EverCraftCharacter {
 
     public int getArmor(){
         return armor;
+    }
+
+    public int getHitPoints(){
+        return hitPoints;
     }
 }
