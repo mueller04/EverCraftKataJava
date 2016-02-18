@@ -161,7 +161,31 @@ public class EverCraftTest {
         assertEquals(3, everCharacter.getHitPoints());
     }
 
+    @Test
+    public void afterRollingCharacterWith0HitPointsIsDead(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+        everCharacter.setHitPoints(2);
 
+        //Act
+        play.roll(everCharacter, 20);
+
+        //Assert
+        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+    }
+
+    @Test
+    public void afterRollingCharacterWithLessThan0HitPointsIsDead(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+        everCharacter.setHitPoints(1);
+
+        //Act
+        play.roll(everCharacter, 20);
+
+        //Assert
+        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+    }
 
 
 }
