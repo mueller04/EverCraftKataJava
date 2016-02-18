@@ -7,7 +7,7 @@ public class EverCraftTest {
     public void canGetCharacterName(){
         //Arrange
         String expectedName = "Example Name";
-        EverCraftCharacter everCharacter = new EverCraftCharacter(expectedName, "good");
+        EverCraftCharacter everCharacter = new EverCraftCharacter(expectedName, EverCraftCharacter.Alignment.Good);
 
         //Act
         String result = everCharacter.getName();
@@ -19,7 +19,7 @@ public class EverCraftTest {
     @Test
     public void canSetCharacterName(){
         //Arrange
-        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", "good");
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
 
         //Act
         String expectedName = "Joe";
@@ -33,13 +33,28 @@ public class EverCraftTest {
     @Test
     public void canGetAlignment(){
         //Arrange
-        String expectedAlignment = "Good";
+        EverCraftCharacter.Alignment expectedAlignment = EverCraftCharacter.Alignment.Good;
         EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", expectedAlignment);
 
         //Act
-        String result = everCharacter.getAlignment();
+        EverCraftCharacter.Alignment result = everCharacter.getAlignment();
 
         //Assert
+        assertEquals(expectedAlignment, result);
+    }
+
+    @Test
+    public void canSetAlignment(){
+        //Arrange
+
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+
+        //Act
+        EverCraftCharacter.Alignment expectedAlignment = EverCraftCharacter.Alignment.Evil;
+        everCharacter.setAlignment(expectedAlignment);
+
+        //Assert
+        EverCraftCharacter.Alignment result = everCharacter.getAlignment();
         assertEquals(expectedAlignment, result);
     }
 

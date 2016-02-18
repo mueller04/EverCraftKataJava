@@ -1,10 +1,14 @@
 
 public class EverCraftCharacter {
 
-    private String name;
-    private String alignment;
+    public enum Alignment {
+        Good, Evil, Neutral
+    }
 
-    public EverCraftCharacter(String name, String alignment){
+    private String name;
+    private Alignment alignment;
+
+    public EverCraftCharacter(String name, Alignment alignment){
         this.name = name;
         this.alignment = alignment;
     }
@@ -17,7 +21,11 @@ public class EverCraftCharacter {
         this.name = name;
     }
 
-    public String getAlignment(){
+    public Alignment getAlignment(){
         return alignment;
+    }
+
+    public void setAlignment(Alignment alignment){
+        this.alignment = alignment;
     }
 }
