@@ -98,7 +98,7 @@ public class EverCraftTest {
         String result = play.roll(everCharacter, 10);
 
         //Assert
-        assertEquals("It's a hit", result);
+        assertEquals("it's a hit", result);
     }
 
     @Test
@@ -110,10 +110,20 @@ public class EverCraftTest {
         String result = play.roll(everCharacter, 11);
 
         //Assert
-        assertEquals("It's a hit", result);
+        assertEquals("it's a hit", result);
     }
 
+    @Test
+    public void rollFailsIfLessThanOpponentsArmorClass(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
 
+        //Act
+        String result = play.roll(everCharacter, 9);
+
+        //Assert
+        assertEquals("attack glanced off the armor", result);
+    }
 
 
 }
