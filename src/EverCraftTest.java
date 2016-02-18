@@ -125,5 +125,31 @@ public class EverCraftTest {
         assertEquals("attack glanced off the armor", result);
     }
 
+    @Test
+    public void successfulRollLessThan20Takes1HitPoint(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+
+        //Act
+        play.roll(everCharacter, 15);
+
+        //Assert
+        assertEquals(4, everCharacter.getHitPoints());
+    }
+
+    @Test
+    public void failedrollDoesNotChangeHitPoints(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+
+        //Act
+        play.roll(everCharacter, 2);
+
+        //Assert
+        assertEquals(5, everCharacter.getHitPoints());
+    }
+
+
+
 
 }

@@ -39,4 +39,8 @@ public class EverCraftCharacter {
     public int getHitPoints(){
         return hitPoints;
     }
+
+    public void setHitPoints(int hitPoints){
+        this.hitPoints = hitPoints;
+    }
 }
