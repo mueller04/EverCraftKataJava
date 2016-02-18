@@ -13,7 +13,22 @@ public class EverCraftTest {
         String result = everCharacter.getName();
 
         //Assert
-        assertEquals("Example Name", result);
+        assertEquals(expectedName, result);
     }
+
+    @Test
+    public void canSetCharacterName(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name");
+
+        //Act
+        String expectedName = "Joe";
+        everCharacter.setName(expectedName);
+        String result = everCharacter.getName();
+
+        //Assert
+        assertEquals(expectedName, result);
+    }
+
 
 }
