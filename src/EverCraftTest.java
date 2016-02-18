@@ -101,6 +101,18 @@ public class EverCraftTest {
         assertEquals("It's a hit", result);
     }
 
+    @Test
+    public void rollHitsIfExceedsOpponentsArmorClass(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+
+        //Act
+        String result = play.roll(everCharacter, 11);
+
+        //Assert
+        assertEquals("It's a hit", result);
+    }
+
 
 
 
