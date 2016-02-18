@@ -149,6 +149,18 @@ public class EverCraftTest {
         assertEquals(5, everCharacter.getHitPoints());
     }
 
+    @Test
+    public void roll20TakesDoublePoints(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+
+        //Act
+        play.roll(everCharacter, 20);
+
+        //Assert
+        assertEquals(3, everCharacter.getHitPoints());
+    }
+
 
 
 
