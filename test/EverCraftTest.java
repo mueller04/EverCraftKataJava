@@ -201,9 +201,21 @@ public class EverCraftTest {
         assertEquals(EverCraftCharacter.LifeStatus.Alive, everCharacter.getLifeStatus());
     }
 
+    //This is where I should use mocking to say it's expected i'm handed back an abilities object and i'm done..I believe
+    //OR would I want to do an object compare between a mocked object and the object handed back from getAbilities?
+    @Test
+    public void charachterHasAbilitiesScoresIncludingStrengthModifier(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+        int expectedStrengthScore = 0;
 
-    //TODO
-    //On Feature: Feature: Character Has Abilities Scores
+        //Act
+        int strengthScore = everCharacter.getAbilities().getStrengthScore();
+        int result = everCharacter.getAbilities().getStrengthModifier(strengthScore);
+
+        //Assert
+        assertEquals(expectedStrengthScore, result);
+    }
 
 
 

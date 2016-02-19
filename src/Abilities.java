@@ -1,36 +1,68 @@
 
 public class Abilities {
 
-    private int strength = 10;
-    private int dexterity = 10;
-    private int constitution = 10;
-    private int wisdom = 10;
-    private int intelligence = 10;
-    private int charisma = 10;
+    private MapScoreToModifier strength = new MapScoreToModifier();
+    private MapScoreToModifier dexterity = new MapScoreToModifier();
+    private MapScoreToModifier constitution = new MapScoreToModifier();
+    private MapScoreToModifier wisdom = new MapScoreToModifier();
+    private MapScoreToModifier intelligence = new MapScoreToModifier();
+    private MapScoreToModifier charisma = new MapScoreToModifier();
+
+    private int strengthScore = 10;
+    private int dexterityScore = 10;
+    private int constitutionScore = 10;
+    private int wisdomScore = 10;
+    private int intelligenceScore = 10;
+    private int charismaScore = 10;
+
 
     //Getters and Setters
-    public int getStrength(){
-        return strength;
+    public int getStrengthModifier(int strengthScore){
+        return strength.scoreToModifier.get(strengthScore);
     }
 
-    public int getDexterity(){
-        return dexterity;
+    public int getDexterityModifier(int strengthScore){
+        return dexterity.scoreToModifier.get(strengthScore);
     }
 
-    public int getConstitution(){
-        return constitution;
+    public int getConstitutionModifier(int strengthScore){
+        return constitution.scoreToModifier.get(strengthScore);
     }
 
-    public int getWisdom(){
-        return wisdom;
+    public int getWisdomModifier(int strengthScore){
+        return wisdom.scoreToModifier.get(strengthScore);
     }
 
-    public int getIntelligence(){
-        return intelligence;
+    public int getIntelligenceModifier(int strengthScore){
+        return intelligence.scoreToModifier.get(strengthScore);
     }
 
-    public int getCharisma(){
-        return charisma;
+    public int getCharismaModifier(int strengthScore){
+        return charisma.scoreToModifier.get(strengthScore);
+    }
+
+    public int getStrengthScore(){
+        return strengthScore;
+    }
+
+    public int getDexterityScore(){
+        return dexterityScore;
+    }
+
+    public int getConstitutionScore(){
+        return constitutionScore;
+    }
+
+    public int getWisdomScore(){
+        return wisdomScore;
+    }
+
+    public int getIntelligenceScore(){
+        return intelligenceScore;
+    }
+
+    public int getCharismaScore(){
+        return charismaScore;
     }
 
 }

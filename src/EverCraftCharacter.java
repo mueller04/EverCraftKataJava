@@ -14,11 +14,13 @@ public class EverCraftCharacter {
     private LifeStatus lifeStatus;
     private int armor = 10;
     private int hitPoints = 5;
+    private Abilities abilities;
 
     public EverCraftCharacter(String name, Alignment alignment){
         this.name = name;
         this.alignment = alignment;
         this.lifeStatus = LifeStatus.Alive;
+        this.abilities = new Abilities();
     }
 
     public void updateLifeStatus(){
@@ -63,4 +65,6 @@ public class EverCraftCharacter {
     public void setLifeStatus(LifeStatus lifeStatus){
         this.lifeStatus = lifeStatus;
     }
+
+    public Abilities getAbilities() { return abilities; }
 }
