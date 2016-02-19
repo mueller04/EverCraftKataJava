@@ -131,6 +131,19 @@ public class PlayTest {
         assertEquals(3, everCharacter.getHitPoints());
     }
 
+    @Test
+    public void afterRolling20StrengthModifierIsAddedAndDoubled(){
+        //Arrange
+        attackingEverCharacter.getAbilities().setStrengthScore(15);
+        everCharacter.setHitPoints(5);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 20);
+
+        //Assert
+        assertEquals(1, everCharacter.getHitPoints());
+    }
+
 
 
 
