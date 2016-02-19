@@ -45,6 +45,10 @@ public class Abilities {
         return strengthScore;
     }
 
+    public void setStrengthScore(int strengthScore){
+        this.strengthScore = strengthScore;
+    }
+
     public int getDexterityScore(){
         return dexterityScore;
     }

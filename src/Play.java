@@ -1,14 +1,23 @@
 
 public class Play {
 
-    public String roll(EverCraftCharacter defendingCharacter, int rollNumber){
+    public String roll(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber){
 
         if (rollNumber >= defendingCharacter.getArmor()){
 
+            int strengthScore = attackingCharacter.getAbilities().getStrengthScore();
+            int hitPointsToDeduce = attackingCharacter.getAbilities().getStrengthModifier(strengthScore);
+
+            if (hitPointsToDeduce < 1) {
+                hitPointsToDeduce = 1;
+            }
+
             if (rollNumber == 20) {
+
                 defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - 2);
             } else {
-                defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - 1);
+
+                defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - hitPointsToDeduce);
             }
 
             defendingCharacter.updateLifeStatus();
