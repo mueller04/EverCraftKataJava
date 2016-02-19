@@ -201,4 +201,10 @@ public class EverCraftTest {
     }
 
 
+    //TODO
+    //On Feature: Feature: Character Has Abilities Scores
+
+
+
+
 }
