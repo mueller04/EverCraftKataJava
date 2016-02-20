@@ -16,6 +16,7 @@ public class EverCraftCharacter {
     private int hitPoints = 5;
     private int experiencePoints = 0;
     private int level = 1;
+    private int attackRollModifier = 0;
     private Abilities abilities;
 
     public EverCraftCharacter(String name, Alignment alignment){
@@ -66,6 +67,12 @@ public class EverCraftCharacter {
         for (int i = 0; i < levelsGained; i++) {
             hitPoints += (5 + abilities.getConstitutionModifier(abilities.getConstitutionScore()));
         }
+        updateAttackRollModifier();
+    }
+
+    private void updateAttackRollModifier() {
+        int fractionalLevel = (level / 2);
+        attackRollModifier = (int)Math.floor(fractionalLevel);
     }
 
     //Getters and Setters
@@ -117,6 +124,10 @@ public class EverCraftCharacter {
 
     public int getLevel(){
         return level;
+    }
+
+    public int getAttackRollModifier(){
+        return attackRollModifier;
     }
 
 

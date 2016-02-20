@@ -193,6 +193,17 @@ public class EverCraftCharacterTest {
         assertEquals(23, hitPoints);
     }
 
+    @Test
+    public void oneIsAddedToAttackRollForEveryEvenLevelAchieved() {
+        //Arrange
+
+        //Act
+        everCharacter.addExperiencePoints(4058);
+
+        //Assert
+        assertEquals(2, everCharacter.getAttackRollModifier());
+    }
+
 
 
 }
