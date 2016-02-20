@@ -116,5 +116,19 @@ public class EverCraftCharacterTest {
         assertEquals(7, result);
     }
 
+    @Test
+    public void constitutionAddsToHitPoints1IsMinimum(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+        everCharacter.getAbilities().setConstitutionScore(1);
+
+        //Act
+        everCharacter.getHitPointsPlusConstitution();
+
+        //Assert
+        int result = everCharacter.getHitPointsPlusConstitution();
+        assertEquals(1, result);
+    }
+
 
 }
