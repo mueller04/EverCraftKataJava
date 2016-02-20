@@ -173,6 +173,18 @@ public class PlayTest {
         assertEquals("attack glanced off the armor", result);
     }
 
+    @Test
+    public void constitutionAddsToHitPoints(){
+        //Arrange
+        everCharacter.setHitPoints(10);
+        everCharacter.getAbilities().setConstitutionScore(1);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 10);
+
+        //Assert
+        assertEquals(4, everCharacter.getHitPoints());
+    }
 
 }
 

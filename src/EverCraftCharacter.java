@@ -29,18 +29,23 @@ public class EverCraftCharacter {
         }
     }
 
-    public int getArmorPlusDexterity(){
+    private void setArmorPlusDexterity(){
         int dexterityScore = abilities.getDexterityScore();
-        return armor + abilities.getDexterityModifier(dexterityScore);
+        armor += abilities.getDexterityModifier(dexterityScore);
     }
 
-    public int getHitPointsPlusConstitution(){
+    private void setHitPointsPlusConstitution(){
         int constitutionScore = abilities.getConstitutionScore();
-        int returnPoints = hitPoints + abilities.getConstitutionModifier(constitutionScore);
-        if (returnPoints < 1) {
-            returnPoints = 1;
+        int newHitPoints = hitPoints + abilities.getConstitutionModifier(constitutionScore);
+        if (newHitPoints < 1) {
+            newHitPoints = 1;
         }
-        return returnPoints;
+        hitPoints = newHitPoints;
+    }
+
+    public void preTurnUpdate() {
+        setArmorPlusDexterity();
+        setHitPointsPlusConstitution();
     }
 
     //Getters and Setters

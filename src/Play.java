@@ -3,9 +3,10 @@ public class Play {
 
     public String roll(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber){
 
-        int ArmorplusDexterity = defendingCharacter.getArmorPlusDexterity();
+        defendingCharacter.preTurnUpdate();
+        attackingCharacter.preTurnUpdate();
 
-        if (rollNumber >= ArmorplusDexterity){
+        if (rollNumber >= defendingCharacter.getArmor()){
 
             int strengthScore = attackingCharacter.getAbilities().getStrengthScore();
             int hitPointsToDeduce = attackingCharacter.getAbilities().getStrengthModifier(strengthScore);

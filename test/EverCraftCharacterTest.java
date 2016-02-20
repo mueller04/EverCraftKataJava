@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -5,11 +6,18 @@ import static org.junit.Assert.assertEquals;
 
 public class EverCraftCharacterTest {
 
+    EverCraftCharacter everCharacter;
+
+    @Before
+    public void beforeAllTests() {
+        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+    }
+
     @Test
     public void canGetCharacterName(){
         //Arrange
         String expectedName = "Example Name";
-        EverCraftCharacter everCharacter = new EverCraftCharacter(expectedName, EverCraftCharacter.Alignment.Good);
+        everCharacter = new EverCraftCharacter(expectedName, EverCraftCharacter.Alignment.Good);
 
         //Act
         String result = everCharacter.getName();
@@ -21,7 +29,6 @@ public class EverCraftCharacterTest {
     @Test
     public void canSetCharacterName(){
         //Arrange
-        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
 
         //Act
         String expectedName = "Joe";
@@ -36,7 +43,6 @@ public class EverCraftCharacterTest {
     public void canGetAlignment(){
         //Arrange
         EverCraftCharacter.Alignment expectedAlignment = EverCraftCharacter.Alignment.Good;
-        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", expectedAlignment);
 
         //Act
         EverCraftCharacter.Alignment result = everCharacter.getAlignment();
@@ -48,7 +54,6 @@ public class EverCraftCharacterTest {
     @Test
     public void canSetAlignment(){
         //Arrange
-        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
 
         //Act
         EverCraftCharacter.Alignment expectedAlignment = EverCraftCharacter.Alignment.Evil;
@@ -62,7 +67,6 @@ public class EverCraftCharacterTest {
     @Test
     public void armorDefaultsTo10(){
         //Arrange
-        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
 
         //Act
         int result = everCharacter.getArmor();
@@ -74,7 +78,6 @@ public class EverCraftCharacterTest {
     @Test
     public void hitPointsDefaultsTo5(){
         //Arrange
-        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
 
         //Act
         int result = everCharacter.getHitPoints();
@@ -90,7 +93,6 @@ public class EverCraftCharacterTest {
     @Test
     public void charachterHasAbilitiesScoresIncludingStrengthModifier(){
         //Arrange
-        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
         int expectedStrengthScore = 0;
 
         //Act
@@ -105,28 +107,26 @@ public class EverCraftCharacterTest {
     @Test
     public void constitutionAddsToHitPoints(){
         //Arrange
-        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
         everCharacter.getAbilities().setConstitutionScore(14);
 
         //Act
-        everCharacter.getHitPointsPlusConstitution();
+        everCharacter.preTurnUpdate();
 
         //Assert
-        int result = everCharacter.getHitPointsPlusConstitution();
+        int result = everCharacter.getHitPoints();
         assertEquals(7, result);
     }
 
     @Test
     public void constitutionAddsToHitPoints1IsMinimum(){
         //Arrange
-        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
         everCharacter.getAbilities().setConstitutionScore(1);
 
         //Act
-        everCharacter.getHitPointsPlusConstitution();
+        everCharacter.preTurnUpdate();
 
         //Assert
-        int result = everCharacter.getHitPointsPlusConstitution();
+        int result = everCharacter.getHitPoints();
         assertEquals(1, result);
     }
 
