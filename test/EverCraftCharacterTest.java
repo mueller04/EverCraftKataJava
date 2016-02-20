@@ -190,7 +190,7 @@ public class EverCraftCharacterTest {
         int hitPoints = everCharacter.getHitPoints();
 
         //Assert
-        assertEquals(18, hitPoints);
+        assertEquals(23, hitPoints);
     }
 
 

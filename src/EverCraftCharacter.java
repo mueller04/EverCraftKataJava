@@ -56,8 +56,16 @@ public class EverCraftCharacter {
     }
 
     private void calculateLevel() {
+        int currentLevel = level;
+
         int fractionalLevel = (experiencePoints / 1000) + 1;
         level = (int)Math.floor(fractionalLevel);
+
+        int levelsGained = level - currentLevel;
+
+        for (int i = 0; i < levelsGained; i++) {
+            hitPoints += (5 + abilities.getConstitutionModifier(abilities.getConstitutionScore()));
+        }
     }
 
     //Getters and Setters
