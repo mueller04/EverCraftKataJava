@@ -101,7 +101,19 @@ public class EverCraftCharacterTest {
         assertEquals(expectedStrengthScore, result);
     }
 
+    @Test
+    public void constitutionAddsToHitPoints(){
+        //Arrange
+        EverCraftCharacter everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+        everCharacter.getAbilities().setConstitution(14);
 
+        //Act
+        everCharacter.getHitPointsPlusConstitution();
+
+        //Assert
+        int result = everCharacter.getHitPoints();
+        assertEquals(7, result);
+    }
 
 
 }
