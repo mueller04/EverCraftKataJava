@@ -141,6 +141,45 @@ public class EverCraftCharacterTest {
         assertEquals(1, level);
     }
 
+    @Test
+    public void reaching1000xpUpsToLevel2(){
+        //Arrange
+        everCharacter.setExperiencePoints(990);
+
+        //Act
+        everCharacter.addExperiencePoints(10);
+        int level = everCharacter.getLevel();
+
+        //Assert
+        assertEquals(2, level);
+    }
+
+    @Test
+    public void reaching2000xpUpsToLevel3(){
+        //Arrange
+        everCharacter.setExperiencePoints(10);
+
+        //Act
+        everCharacter.addExperiencePoints(1990);
+        int level = everCharacter.getLevel();
+
+        //Assert
+        assertEquals(3, level);
+    }
+
+    @Test
+    public void reaching3058xpUpsToLevel4(){
+        //Arrange
+        everCharacter.setExperiencePoints(2000);
+
+        //Act
+        everCharacter.addExperiencePoints(1058);
+        int level = everCharacter.getLevel();
+
+        //Assert
+        assertEquals(4, level);
+    }
+
 
 
 }

@@ -52,6 +52,12 @@ public class EverCraftCharacter {
 
     public void addExperiencePoints(int experiencePoints) {
         this.experiencePoints += experiencePoints;
+        calculateLevel();
+    }
+
+    private void calculateLevel() {
+        int fractionalLevel = (experiencePoints / 1000) + 1;
+        level = (int)Math.floor(fractionalLevel);
     }
 
     //Getters and Setters
@@ -95,6 +101,10 @@ public class EverCraftCharacter {
 
     public int getExperiencePoints(){
         return experiencePoints;
+    }
+
+    public void setExperiencePoints(int experiencePoints){
+        this.experiencePoints = experiencePoints;
     }
 
     public int getLevel(){
