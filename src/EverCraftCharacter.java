@@ -14,6 +14,7 @@ public class EverCraftCharacter {
     private LifeStatus lifeStatus;
     private int armor = 10;
     private int hitPoints = 5;
+    private int experiencePoints = 0;
     private Abilities abilities;
 
     public EverCraftCharacter(String name, Alignment alignment){
@@ -46,6 +47,10 @@ public class EverCraftCharacter {
     public void preTurnUpdate() {
         setArmorPlusDexterity();
         setHitPointsPlusConstitution();
+    }
+
+    public void addExperiencePoints(int experiencePoints) {
+        this.experiencePoints += experiencePoints;
     }
 
     //Getters and Setters
@@ -86,4 +91,10 @@ public class EverCraftCharacter {
     }
 
     public Abilities getAbilities() { return abilities; }
+
+    public int getExperiencePoints(){
+        return experiencePoints;
+    }
+
+
 }

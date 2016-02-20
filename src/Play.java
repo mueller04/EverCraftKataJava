@@ -10,6 +10,7 @@ public class Play {
 
             reduceDefendingCharacterHitPoints(defendingCharacter, attackingCharacter, rollNumber);
             defendingCharacter.updateLifeStatus();
+            attackingCharacter.addExperiencePoints(10);
             return "it's a hit";
 
         } else {

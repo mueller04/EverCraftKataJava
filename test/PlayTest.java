@@ -186,6 +186,17 @@ public class PlayTest {
         assertEquals(4, everCharacter.getHitPoints());
     }
 
+    @Test
+    public void successfulAttackEarns10ExperiencePoints(){
+        //Arrange
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 10);
+
+        //Assert
+        assertEquals(10, attackingEverCharacter.getExperiencePoints());
+    }
+
 }
 
 
