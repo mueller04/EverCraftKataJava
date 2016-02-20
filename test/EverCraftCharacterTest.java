@@ -130,6 +130,17 @@ public class EverCraftCharacterTest {
         assertEquals(1, result);
     }
 
+    @Test
+    public void levelDefaultsTo1(){
+        //Arrange
+
+        //Act
+        int level = everCharacter.getLevel();
+
+        //Assert
+        assertEquals(1, level);
+    }
+
 
 
 }

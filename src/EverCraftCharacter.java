@@ -15,6 +15,7 @@ public class EverCraftCharacter {
     private int armor = 10;
     private int hitPoints = 5;
     private int experiencePoints = 0;
+    private int level = 1;
     private Abilities abilities;
 
     public EverCraftCharacter(String name, Alignment alignment){
@@ -94,6 +95,10 @@ public class EverCraftCharacter {
 
     public int getExperiencePoints(){
         return experiencePoints;
+    }
+
+    public int getLevel(){
+        return level;
     }
 
 
