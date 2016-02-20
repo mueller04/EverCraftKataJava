@@ -144,7 +144,18 @@ public class PlayTest {
         assertEquals(1, everCharacter.getHitPoints());
     }
 
+    @Test
+    public void addDexterityModifierToArmorClassMeetArmorPointsResultsInHit(){
+        //Arrange
+        attackingEverCharacter.getAbilities().setStrengthScore(15);
+        everCharacter.setDexterityScore(14);
 
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 12);
+
+        //Assert
+        assertEquals(4, everCharacter.getHitPoints());
+    }
 
 
 }

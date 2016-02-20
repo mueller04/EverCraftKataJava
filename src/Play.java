@@ -13,8 +13,7 @@ public class Play {
             }
 
             if (rollNumber == 20) {
-
-                defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - 2);
+                defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - hitPointsToDeduce * 2);
             } else {
 
                 defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - hitPointsToDeduce);
