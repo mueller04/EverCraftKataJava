@@ -62,12 +62,15 @@ public class EverCraftCharacter {
         int fractionalLevel = (experiencePoints / 1000) + 1;
         level = (int)Math.floor(fractionalLevel);
 
-        int levelsGained = level - currentLevel;
+        updateHitPoints(currentLevel);
+        updateAttackRollModifier();
+    }
 
+    private void updateHitPoints(int currentLevel){
+        int levelsGained = level - currentLevel;
         for (int i = 0; i < levelsGained; i++) {
             hitPoints += (5 + abilities.getConstitutionModifier(abilities.getConstitutionScore()));
         }
-        updateAttackRollModifier();
     }
 
     private void updateAttackRollModifier() {
