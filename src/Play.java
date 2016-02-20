@@ -6,6 +6,8 @@ public class Play {
         defendingCharacter.preTurnUpdate();
         attackingCharacter.preTurnUpdate();
 
+        rollNumber += attackingCharacter.getAttackRollModifier();
+
         if (rollNumber >= defendingCharacter.getArmor()){
 
             reduceDefendingCharacterHitPoints(defendingCharacter, attackingCharacter, rollNumber);

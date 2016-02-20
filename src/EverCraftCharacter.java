@@ -133,5 +133,9 @@ public class EverCraftCharacter {
         return attackRollModifier;
     }
 
+    public void setAttackRollModifier(int attackRollModifier){
+        this.attackRollModifier = attackRollModifier;
+    }
+
 
 }
