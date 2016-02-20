@@ -8,7 +8,7 @@ public class Play {
 
         if (rollNumber >= defendingCharacter.getArmor()){
 
-            reducedefendingCharacterHitPoints(defendingCharacter, attackingCharacter, rollNumber);
+            reduceDefendingCharacterHitPoints(defendingCharacter, attackingCharacter, rollNumber);
             defendingCharacter.updateLifeStatus();
             return "it's a hit";
 
@@ -17,7 +17,7 @@ public class Play {
         }
     }
 
-    private void reducedefendingCharacterHitPoints(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber) {
+    private void reduceDefendingCharacterHitPoints(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber) {
 
         int strengthScore = attackingCharacter.getAbilities().getStrengthScore();
         int amountToReduceHitPointsBy = attackingCharacter.getAbilities().getStrengthModifier(strengthScore);
@@ -27,11 +27,8 @@ public class Play {
         }
 
         if (rollNumber == 20) {
-            defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - amountToReduceHitPointsBy * 2);
-        } else {
-
-            defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - amountToReduceHitPointsBy);
+            amountToReduceHitPointsBy *= 2;
         }
+        defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - amountToReduceHitPointsBy);
     }
-
 }
