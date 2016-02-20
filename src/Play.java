@@ -3,6 +3,8 @@ public class Play {
 
     public String roll(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber){
 
+
+
         if (rollNumber >= defendingCharacter.getArmor()){
 
             int strengthScore = attackingCharacter.getAbilities().getStrengthScore();

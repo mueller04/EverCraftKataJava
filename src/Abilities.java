@@ -21,24 +21,24 @@ public class Abilities {
         return strength.scoreToModifier.get(strengthScore);
     }
 
-    public int getDexterityModifier(int strengthScore){
-        return dexterity.scoreToModifier.get(strengthScore);
+    public int getDexterityModifier(int dexterityScore){
+        return dexterity.scoreToModifier.get(dexterityScore);
     }
 
-    public int getConstitutionModifier(int strengthScore){
-        return constitution.scoreToModifier.get(strengthScore);
+    public int getConstitutionModifier(int constitutionScore){
+        return constitution.scoreToModifier.get(constitutionScore);
     }
 
-    public int getWisdomModifier(int strengthScore){
-        return wisdom.scoreToModifier.get(strengthScore);
+    public int getWisdomModifier(int wisdomScore){
+        return wisdom.scoreToModifier.get(wisdomScore);
     }
 
-    public int getIntelligenceModifier(int strengthScore){
-        return intelligence.scoreToModifier.get(strengthScore);
+    public int getIntelligenceModifier(int intelligenceScore){
+        return intelligence.scoreToModifier.get(intelligenceScore);
     }
 
-    public int getCharismaModifier(int strengthScore){
-        return charisma.scoreToModifier.get(strengthScore);
+    public int getCharismaModifier(int charismaScore){
+        return charisma.scoreToModifier.get(charismaScore);
     }
 
     public int getStrengthScore(){
@@ -51,6 +51,10 @@ public class Abilities {
 
     public int getDexterityScore(){
         return dexterityScore;
+    }
+
+    public void setDexterityScore(int dexterityScore){
+        this.dexterityScore = dexterityScore;
     }
 
     public int getConstitutionScore(){

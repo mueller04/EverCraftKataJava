@@ -144,11 +144,14 @@ public class PlayTest {
         assertEquals(1, everCharacter.getHitPoints());
     }
 
+    //What I changed in the code is adding a setter in Abilities, and modifying getArmor in EverCraftCharacter.  Does
+    //This mean I really should be adding a test in EverCraftCharacterTest which tests that getArmor includes
+    //The dexterityModifier instead of this test?  Would I not need this "integration test" where the results
+    //Of that accurately impact the hit points?
     @Test
     public void addDexterityModifierToArmorClassMeetArmorPointsResultsInHit(){
         //Arrange
-        attackingEverCharacter.getAbilities().setStrengthScore(15);
-        everCharacter.setDexterityScore(14);
+        everCharacter.getAbilities().setDexterityScore(14);
 
         //Act
         play.roll(everCharacter, attackingEverCharacter, 12);
@@ -156,6 +159,7 @@ public class PlayTest {
         //Assert
         assertEquals(4, everCharacter.getHitPoints());
     }
+
 
 
 }
