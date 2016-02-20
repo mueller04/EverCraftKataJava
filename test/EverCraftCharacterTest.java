@@ -180,6 +180,19 @@ public class EverCraftCharacterTest {
         assertEquals(4, level);
     }
 
+    @Test
+    public void eachAdditionalLevelAfterLevel1Adds5HitPointsPlusConstitutionModifier(){
+        //Arrange
+        everCharacter.getAbilities().setConstitutionScore(12);
+
+        //Act
+        everCharacter.addExperiencePoints(3058);
+        int hitPoints = everCharacter.getHitPoints();
+
+        //Assert
+        assertEquals(18, hitPoints);
+    }
+
 
 
 }
