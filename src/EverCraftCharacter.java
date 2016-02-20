@@ -29,6 +29,11 @@ public class EverCraftCharacter {
         }
     }
 
+    public int getArmorPlusDexterity(){
+        int dexterityScore = abilities.getDexterityScore();
+        return armor + abilities.getDexterityModifier(dexterityScore);
+    }
+
     //Getters and Setters
     public String getName(){
         return name;
@@ -47,8 +52,7 @@ public class EverCraftCharacter {
     }
 
     public int getArmor(){
-        int dexterityScore = abilities.getDexterityScore();
-        return armor + abilities.getDexterityModifier(dexterityScore);
+        return armor;
     }
 
     public int getHitPoints(){
