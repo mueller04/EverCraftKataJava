@@ -36,7 +36,11 @@ public class EverCraftCharacter {
 
     public int getHitPointsPlusConstitution(){
         int constitutionScore = abilities.getConstitutionScore();
-        return hitPoints + abilities.getConstitutionModifier(constitutionScore);
+        int returnPoints = hitPoints + abilities.getConstitutionModifier(constitutionScore);
+        if (returnPoints < 1) {
+            returnPoints = 1;
+        }
+        return returnPoints;
     }
 
     //Getters and Setters
