@@ -61,6 +61,10 @@ public class Abilities {
         return constitutionScore;
     }
 
+    public void setConstitutionScore(int constitutionScore){
+        this.constitutionScore = constitutionScore;
+    }
+
     public int getWisdomScore(){
         return wisdomScore;
     }

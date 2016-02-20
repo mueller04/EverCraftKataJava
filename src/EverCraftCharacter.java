@@ -34,6 +34,11 @@ public class EverCraftCharacter {
         return armor + abilities.getDexterityModifier(dexterityScore);
     }
 
+    public int getHitPointsPlusConstitution(){
+        int constitutionScore = abilities.getConstitutionScore();
+        return hitPoints + abilities.getConstitutionModifier(constitutionScore);
+    }
+
     //Getters and Setters
     public String getName(){
         return name;
