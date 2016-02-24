@@ -12,7 +12,6 @@ public class EverCraftCharacter {
     private String name;
     private Alignment alignment;
     private LifeStatus lifeStatus;
-    private int armor = 10;
     private int experiencePoints = 0;
     private int hitPoints = 5;
     private Abilities abilities;
@@ -30,13 +29,13 @@ public class EverCraftCharacter {
         }
     }
 
-    private void setArmorPlusDexterity(){
+    public int getArmorPlusDexterity(){
+        int armor = 10;
         int dexterityScore = abilities.getDexterityScore();
-        armor += abilities.getDexterityModifier(dexterityScore);
+        return armor += abilities.getDexterityModifier(dexterityScore);
     }
 
     public int getAttackRollModifierCalculatePreTurnUpdate() {
-        setArmorPlusDexterity();
         int level = getLevel();
         calculateHitPoints(level);
         int attackRollModifier = getAttackRollModifier(level);
@@ -46,7 +45,6 @@ public class EverCraftCharacter {
 
     public void addExperiencePoints(int experiencePoints) {
         this.experiencePoints += experiencePoints;
-
     }
 
     public int getLevel() {
@@ -93,11 +91,6 @@ public class EverCraftCharacter {
         this.alignment = alignment;
     }
 
-    public int getArmor(){
-        return armor;
-    }
-
-
     public LifeStatus getLifeStatus(){
         return lifeStatus;
     }
@@ -115,7 +108,6 @@ public class EverCraftCharacter {
     public void setExperiencePoints(int experiencePoints){
         this.experiencePoints = experiencePoints;
     }
-
 
     public int getHitPoints(){
         return hitPoints;

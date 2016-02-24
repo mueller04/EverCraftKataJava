@@ -69,7 +69,7 @@ public class EverCraftCharacterTest {
         //Arrange
 
         //Act
-        int result = everCharacter.getArmor();
+        int result = everCharacter.getArmorPlusDexterity();
 
         //Assert
         assertEquals(10, result);
@@ -205,6 +205,18 @@ public class EverCraftCharacterTest {
 
         //Assert
         assertEquals(2, everCharacter.getAttackRollModifierCalculatePreTurnUpdate());
+    }
+
+    @Test
+    public void addDexterityModifierToArmorClass(){
+        //Arrange
+        everCharacter.getAbilities().setDexterityScore(14);
+
+        //Act
+        int result = everCharacter.getArmorPlusDexterity();
+
+        //Assert
+        assertEquals(12, result);
     }
 
 

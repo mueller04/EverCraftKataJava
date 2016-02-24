@@ -8,7 +8,7 @@ public class Play {
 
         rollNumber += attackRollModifier;
 
-        if (rollNumber >= defendingCharacter.getArmor()){
+        if (rollNumber >= defendingCharacter.getArmorPlusDexterity()){
 
             reduceDefendingCharacterHitPoints(defendingCharacter, attackingCharacter, rollNumber);
             defendingCharacter.updateLifeStatus();
