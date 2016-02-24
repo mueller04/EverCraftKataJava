@@ -3,10 +3,10 @@ public class Play {
 
     public String roll(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber){
 
-        defendingCharacter.preTurnUpdate();
-        attackingCharacter.preTurnUpdate();
+        defendingCharacter.getAttackRollModifierCalculatePreTurnUpdate();
+        int attackRollModifier = attackingCharacter.getAttackRollModifierCalculatePreTurnUpdate();
 
-        rollNumber += attackingCharacter.getAttackRollModifier();
+        rollNumber += attackRollModifier;
 
         if (rollNumber >= defendingCharacter.getArmor()){
 

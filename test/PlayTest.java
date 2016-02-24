@@ -197,19 +197,7 @@ public class PlayTest {
         assertEquals(10, attackingEverCharacter.getExperiencePoints());
     }
 
-    //should I have written this test along with the test I wrote for attack role modifier in EverCharacterTest or did
-    //I not really need that test?
-    @Test
-    public void rollModifierAddsToAttackRole(){
-        //Arrange
-        attackingEverCharacter.setAttackRollModifier(2);
 
-        //Act
-        String result = play.roll(everCharacter, attackingEverCharacter, 8);
-
-        //Assert
-        assertEquals("it's a hit", result);
-    }
 
 }
 

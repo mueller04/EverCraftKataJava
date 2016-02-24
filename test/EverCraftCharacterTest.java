@@ -110,7 +110,7 @@ public class EverCraftCharacterTest {
         everCharacter.getAbilities().setConstitutionScore(14);
 
         //Act
-        everCharacter.preTurnUpdate();
+        everCharacter.getAttackRollModifierCalculatePreTurnUpdate();
 
         //Assert
         int result = everCharacter.getHitPoints();
@@ -123,7 +123,8 @@ public class EverCraftCharacterTest {
         everCharacter.getAbilities().setConstitutionScore(1);
 
         //Act
-        everCharacter.preTurnUpdate();
+        everCharacter.setHitPoints(3);
+        everCharacter.getAttackRollModifierCalculatePreTurnUpdate();
 
         //Assert
         int result = everCharacter.getHitPoints();
@@ -187,10 +188,11 @@ public class EverCraftCharacterTest {
 
         //Act
         everCharacter.addExperiencePoints(3058);
-        int hitPoints = everCharacter.getHitPoints();
+        everCharacter.getAttackRollModifierCalculatePreTurnUpdate();
 
         //Assert
-        assertEquals(23, hitPoints);
+        int hitPoints = everCharacter.getHitPoints();
+        assertEquals(24, hitPoints);
     }
 
     @Test
@@ -198,10 +200,11 @@ public class EverCraftCharacterTest {
         //Arrange
 
         //Act
+        //4058 gives you level 5 which means you earn 2 for having achieved level 4
         everCharacter.addExperiencePoints(4058);
 
         //Assert
-        assertEquals(2, everCharacter.getAttackRollModifier());
+        assertEquals(2, everCharacter.getAttackRollModifierCalculatePreTurnUpdate());
     }
 
 

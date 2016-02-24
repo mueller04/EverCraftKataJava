@@ -13,10 +13,8 @@ public class EverCraftCharacter {
     private Alignment alignment;
     private LifeStatus lifeStatus;
     private int armor = 10;
-    private int hitPoints = 5;
     private int experiencePoints = 0;
-    private int level = 1;
-    private int attackRollModifier = 0;
+    private int hitPoints = 5;
     private Abilities abilities;
 
     public EverCraftCharacter(String name, Alignment alignment){
@@ -37,45 +35,45 @@ public class EverCraftCharacter {
         armor += abilities.getDexterityModifier(dexterityScore);
     }
 
-    private void setHitPointsPlusConstitution(){
-        int constitutionScore = abilities.getConstitutionScore();
-        int newHitPoints = hitPoints + abilities.getConstitutionModifier(constitutionScore);
-        if (newHitPoints < 1) {
-            newHitPoints = 1;
-        }
-        hitPoints = newHitPoints;
+    public int getAttackRollModifierCalculatePreTurnUpdate() {
+        setArmorPlusDexterity();
+        int level = getLevel();
+        calculateHitPoints(level);
+        int attackRollModifier = getAttackRollModifier(level);
+        return attackRollModifier;
     }
 
-    public void preTurnUpdate() {
-        setArmorPlusDexterity();
-        setHitPointsPlusConstitution();
-    }
 
     public void addExperiencePoints(int experiencePoints) {
         this.experiencePoints += experiencePoints;
-        calculateLevel();
+
     }
 
-    private void calculateLevel() {
-        int currentLevel = level;
-
-        int fractionalLevel = (experiencePoints / 1000) + 1;
-        level = (int)Math.floor(fractionalLevel);
-
-        updateHitPoints(currentLevel);
-        updateAttackRollModifier();
+    public int getLevel() {
+        int level = 1;
+        if (experiencePoints != 0) {
+            int fractionalLevel = (experiencePoints / 1000) + 1;
+            level = (int) Math.floor(fractionalLevel);
+        }
+        return level;
     }
 
-    private void updateHitPoints(int currentLevel){
-        int levelsGained = level - currentLevel;
-        for (int i = 0; i < levelsGained; i++) {
-            hitPoints += (5 + abilities.getConstitutionModifier(abilities.getConstitutionScore()));
+    private void calculateHitPoints(int level){
+        int constitutionModifier = abilities.getConstitutionModifier(abilities.getConstitutionScore());
+        hitPoints += constitutionModifier;
+
+        for (int i = 1; i < level; i++) {
+            hitPoints += (5 + constitutionModifier);
+        }
+        if (hitPoints < 1) {
+            hitPoints = 1;
         }
     }
 
-    private void updateAttackRollModifier() {
+    private int getAttackRollModifier(int level) {
         int fractionalLevel = (level / 2);
-        attackRollModifier = (int)Math.floor(fractionalLevel);
+        int attackRollModifier = (int)Math.floor(fractionalLevel);
+        return attackRollModifier;
     }
 
     //Getters and Setters
@@ -99,13 +97,6 @@ public class EverCraftCharacter {
         return armor;
     }
 
-    public int getHitPoints(){
-        return hitPoints;
-    }
-
-    public void setHitPoints(int hitPoints){
-        this.hitPoints = hitPoints;
-    }
 
     public LifeStatus getLifeStatus(){
         return lifeStatus;
@@ -125,16 +116,13 @@ public class EverCraftCharacter {
         this.experiencePoints = experiencePoints;
     }
 
-    public int getLevel(){
-        return level;
+
+    public int getHitPoints(){
+        return hitPoints;
     }
 
-    public int getAttackRollModifier(){
-        return attackRollModifier;
-    }
-
-    public void setAttackRollModifier(int attackRollModifier){
-        this.attackRollModifier = attackRollModifier;
+    public void setHitPoints(int hitPoints){
+        this.hitPoints = hitPoints;
     }
 
 
