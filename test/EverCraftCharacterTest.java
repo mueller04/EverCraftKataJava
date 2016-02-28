@@ -219,5 +219,31 @@ public class EverCraftCharacterTest {
         assertEquals(12, result);
     }
 
+    @Test
+    public void whenUpdateLifeStatusIsCalledAndZeroHPCharacterIsDead(){
+        //Arrange
+        everCharacter.setHitPoints(0);
+        everCharacter.setLifeStatus(EverCraftCharacter.LifeStatus.Alive);
+
+        //Act
+        everCharacter.updateLifeStatus();
+
+        //Assert
+        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+    }
+
+    @Test
+    public void whenUpdateLifeStatusIsCalledAndBelowZeroHPCharacterIsDead(){
+        //Arrange
+        everCharacter.setHitPoints(-3);
+        everCharacter.setLifeStatus(EverCraftCharacter.LifeStatus.Alive);
+
+        //Act
+        everCharacter.updateLifeStatus();
+
+        //Assert
+        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+    }
+
 
 }

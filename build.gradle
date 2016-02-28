@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'org.mockito:mockito-all:1.10.19'
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}

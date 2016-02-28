@@ -6,11 +6,11 @@ public class Play {
         defendingCharacter.getAttackRollModifierCalculatePreTurnUpdate();
         int attackRollModifier = attackingCharacter.getAttackRollModifierCalculatePreTurnUpdate();
 
-        rollNumber += attackRollModifier;
+        int rollNumberAndAttackRollModifier = rollNumber + attackRollModifier;
 
-        if (rollNumber >= defendingCharacter.getArmorPlusDexterity()){
+        if (rollNumberAndAttackRollModifier >= defendingCharacter.getArmorPlusDexterity()){
 
-            reduceDefendingCharacterHitPoints(defendingCharacter, attackingCharacter, rollNumber);
+            reduceDefendingCharacterHitPoints(defendingCharacter, attackingCharacter, rollNumberAndAttackRollModifier);
             defendingCharacter.updateLifeStatus();
             attackingCharacter.addExperiencePoints(10);
             return "it's a hit";
@@ -20,7 +20,7 @@ public class Play {
         }
     }
 
-    private void reduceDefendingCharacterHitPoints(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber) {
+    private void reduceDefendingCharacterHitPoints(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumberAndAttackRollModifier) {
 
         int strengthScore = attackingCharacter.getAbilities().getStrengthScore();
         int amountToReduceHitPointsBy = attackingCharacter.getAbilities().getStrengthModifier(strengthScore);
@@ -29,7 +29,7 @@ public class Play {
             amountToReduceHitPointsBy = 1;
         }
 
-        if (rollNumber == 20) {
+        if (rollNumberAndAttackRollModifier == 20) {
             amountToReduceHitPointsBy *= 2;
         }
         defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - amountToReduceHitPointsBy);
