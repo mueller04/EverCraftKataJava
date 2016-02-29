@@ -32,11 +32,6 @@ public class IntegrationTests {
     }
 
 
-    //What I changed in the code is adding a setter in Abilities, and modifying getArmorPlusDexterity in EverCraftCharacter.  Does
-    //This mean I really should be adding a test in EverCraftCharacterTest which tests that getArmorPlusDexterity directly
-    // instead of this test?  Would I not need this "integration test" where the results
-    //Of that accurately impact the hit points?
-    //The long method names make me wonder if these tests arent isolated enough and are "integration tests"
     @Test
     public void addDexterityModifierToArmorClassMeetArmorPointsResultsInHit(){
         //Arrange
@@ -49,7 +44,6 @@ public class IntegrationTests {
         assertEquals("it's a hit", result);
     }
 
-    //same concerns as above
     @Test
     public void addDexterityModifierToArmorClassLessPointsResultsInMiss(){
         //Arrange
@@ -60,6 +54,82 @@ public class IntegrationTests {
 
         //Assert
         assertEquals("attack glanced off the armor", result);
+    }
+
+    //Can this realistically be mocked or should this be moved to integration tests?
+    @Test
+    public void successfulRollLessThan20Takes1HitPoint(){
+        //Arrange
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 15);
+
+        //Assert
+        assertEquals(4, everCharacter.getHitPoints());
+
+    }
+
+    //Can this realistically be mocked or should this be moved to integration tests?
+    @Test
+    public void failedrollDoesNotChangeHitPoints(){
+        //Arrange
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 2);
+
+        //Assert
+        assertEquals(5, everCharacter.getHitPoints());
+    }
+
+    //Can this realistically be mocked or should this be moved to integration tests?
+    @Test
+    public void roll20TakesDoublePoints(){
+        //Arrange
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 20);
+
+        //Assert
+        assertEquals(3, everCharacter.getHitPoints());
+    }
+
+    //Can this realistically be mocked or should this be moved to integration tests?
+    //I do have a unitTest in EverCraftCharacterTest for UpdateLifeStatus, is it necessary to have an integration test?
+    @Test
+    public void afterRollingCharacterWith0HitPointsIsDead(){
+        //Arrange
+        everCharacter.setHitPoints(2);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 20);
+
+        //Assert
+        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+    }
+
+    //same as above
+    @Test
+    public void afterRollingCharacterWithLessThan0HitPointsIsDead(){
+        //Arrange
+        everCharacter.setHitPoints(1);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 20);
+
+        //Assert
+        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+    }
+
+    @Test
+    public void afterRollingCharacterWithMoreThan0HitPointsIsAlive(){
+        //Arrange
+        everCharacter.setHitPoints(3);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 20);
+
+        //Assert
+        assertEquals(EverCraftCharacter.LifeStatus.Alive, everCharacter.getLifeStatus());
     }
 
 

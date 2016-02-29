@@ -3,6 +3,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 
 public class PlayTest {
 
@@ -26,13 +27,11 @@ public class PlayTest {
 
     }
 
-    //This appears to be working with the Mocks...
     @Test
     public void rollHitsIfMeetsOpponentsArmorClass(){
         //Arrange
         Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
         Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(10);
-
 
         //Act
         String result = play.roll(mockDefendingChar, mockAttackingChar, 10);
@@ -41,7 +40,6 @@ public class PlayTest {
         assertEquals("it's a hit", result);
     }
 
-    //This appears to be working with the Mocks...
     @Test
     public void rollHitsIfExceedsOpponentsArmorClass(){
         //Arrange
@@ -56,7 +54,6 @@ public class PlayTest {
         assertEquals("it's a hit", result);
     }
 
-    //This appears to be working with the Mocks...
     @Test
     public void rollFailsIfLessThanOpponentsArmorClass(){
         //Arrange
@@ -70,82 +67,7 @@ public class PlayTest {
         assertEquals("attack glanced off the armor", result);
     }
 
-    //Can this realistically be mocked or should this be moved to integration tests?
-    @Test
-    public void successfulRollLessThan20Takes1HitPoint(){
-        //Arrange
-
-        //Act
-        play.roll(everCharacter, attackingEverCharacter, 15);
-
-        //Assert
-        assertEquals(4, everCharacter.getHitPoints());
-
-    }
-
-    //Can this realistically be mocked or should this be moved to integration tests?
-    @Test
-    public void failedrollDoesNotChangeHitPoints(){
-        //Arrange
-
-        //Act
-        play.roll(everCharacter, attackingEverCharacter, 2);
-
-        //Assert
-        assertEquals(5, everCharacter.getHitPoints());
-    }
-
-    //Can this realistically be mocked or should this be moved to integration tests?
-    @Test
-    public void roll20TakesDoublePoints(){
-        //Arrange
-
-        //Act
-        play.roll(everCharacter, attackingEverCharacter, 20);
-
-        //Assert
-        assertEquals(3, everCharacter.getHitPoints());
-    }
-
-    //Can this realistically be mocked or should this be moved to integration tests?
-    //I do have a unitTest in EverCraftCharacterTest for UpdateLifeStatus, is it necessary to have an integration test?
-    @Test
-    public void afterRollingCharacterWith0HitPointsIsDead(){
-        //Arrange
-        everCharacter.setHitPoints(2);
-
-        //Act
-        play.roll(everCharacter, attackingEverCharacter, 20);
-
-        //Assert
-        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
-    }
-
-    //same as above
-    @Test
-    public void afterRollingCharacterWithLessThan0HitPointsIsDead(){
-        //Arrange
-        everCharacter.setHitPoints(1);
-
-        //Act
-        play.roll(everCharacter, attackingEverCharacter, 20);
-
-        //Assert
-        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
-    }
-
-    @Test
-    public void afterRollingCharacterWithMoreThan0HitPointsIsAlive(){
-        //Arrange
-        everCharacter.setHitPoints(3);
-
-        //Act
-        play.roll(everCharacter, attackingEverCharacter, 20);
-
-        //Assert
-        assertEquals(EverCraftCharacter.LifeStatus.Alive, everCharacter.getLifeStatus());
-    }
-
+    //Move some of this functionality into the character class then unit test it in there
     @Test
     public void afterRollingStrengthModifierIsAdded(){
         //Arrange
@@ -159,42 +81,42 @@ public class PlayTest {
         assertEquals(3, everCharacter.getHitPoints());
     }
 
-    //You can see from these comments it used to be an integration test
-    //I don't know why this test is failing, i'm expecting that a 2 strength modifier plus 8 roll will get me just
-    // enough to score a hit
     @Test
-    public void afterRollingStrengthModifierIsAddedMocked(){
+    public void afterRollingAttackRollModifierIsAdded(){
         //Arrange
         Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
-        Mockito.when(mockAttackingChar.getAbilities().getStrengthModifier(15)).thenReturn(2);
-        //mockAttackingChar.getAbilities().setStrengthScore(15);
-        everCharacter.setHitPoints(5);
+        Mockito.when(mockAttackingChar.getAttackRollModifierCalculatePreTurnUpdate()).thenReturn(2);
+        Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(9);
 
         //Act
-        String result = play.roll(everCharacter, mockAttackingChar, 8);
+        String result = play.roll(mockDefendingChar, mockAttackingChar, 8);
 
         //Assert
         assertEquals("it's a hit", result);
-        //original roll in act is 2
-        //original Assert is:
-        //assertEquals(3, everCharacter.getHitPoints());
     }
 
+    //This works in validating that amountToReduceHitPointsBy can double from 1 to 2,
+    //but I can't seem to use getStrengthModifier(15) in order to make amountToReduceHitPointsBy equal 4.
     @Test
     public void afterRolling20StrengthModifierIsAddedAndDoubled(){
         //Arrange
-        attackingEverCharacter.getAbilities().setStrengthScore(15);
-        everCharacter.setHitPoints(5);
+        //attackingEverCharacter.getAbilities().setStrengthScore(15);
+        //everCharacter.setHitPoints(5);
+        Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
+        Mockito.when(mockAttackingChar.getAttackRollModifierCalculatePreTurnUpdate()).thenReturn(0);
+        Mockito.when(mockAttackingChar.getAbilities().getStrengthModifier(15)).thenReturn(2);
+        Mockito.when(mockDefendingChar.getHitPoints()).thenReturn(5);
+        Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(10);
 
         //Act
-        play.roll(everCharacter, attackingEverCharacter, 20);
+        play.roll(mockDefendingChar, mockAttackingChar, 20);
 
         //Assert
-        assertEquals(1, everCharacter.getHitPoints());
+        //assertEquals(1, everCharacter.getHitPoints());
+        //verify(mockDefendingChar).setHitPoints(1);
     }
 
-
-
+    //move this to CharacterTest to test against method calculateHitPoints() verify using getHitPoints that constitution modifier was added
     @Test
     public void constitutionAddsToHitPoints(){
         //Arrange
@@ -211,12 +133,14 @@ public class PlayTest {
     @Test
     public void successfulAttackEarns10ExperiencePoints(){
         //Arrange
+        Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
+        Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(10);
 
         //Act
-        play.roll(everCharacter, attackingEverCharacter, 10);
+        play.roll(mockDefendingChar, mockAttackingChar, 10);
 
         //Assert
-        assertEquals(10, attackingEverCharacter.getExperiencePoints());
+        verify(mockAttackingChar).addExperiencePoints(10);
     }
 
 

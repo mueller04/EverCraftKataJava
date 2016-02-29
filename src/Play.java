@@ -29,7 +29,7 @@ public class Play {
             amountToReduceHitPointsBy = 1;
         }
 
-        if (rollNumberAndAttackRollModifier == 20) {
+        if (rollNumberAndAttackRollModifier >= 20) {
             amountToReduceHitPointsBy *= 2;
         }
         defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - amountToReduceHitPointsBy);
