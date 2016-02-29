@@ -3,6 +3,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.verify;
 
 public class PlayTest {
@@ -95,16 +96,12 @@ public class PlayTest {
         assertEquals("it's a hit", result);
     }
 
-    //This works in validating that amountToReduceHitPointsBy can double from 1 to 2,
-    //but I can't seem to use getStrengthModifier(15) in order to make amountToReduceHitPointsBy equal 4.
     @Test
     public void afterRolling20StrengthModifierIsAddedAndDoubled(){
         //Arrange
-        //attackingEverCharacter.getAbilities().setStrengthScore(15);
-        //everCharacter.setHitPoints(5);
         Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
         Mockito.when(mockAttackingChar.getAttackRollModifierCalculatePreTurnUpdate()).thenReturn(0);
-        Mockito.when(mockAttackingChar.getAbilities().getStrengthModifier(15)).thenReturn(2);
+        Mockito.when(mockAttackingChar.getAbilities().getStrengthModifier(anyInt())).thenReturn(2);
         Mockito.when(mockDefendingChar.getHitPoints()).thenReturn(5);
         Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(10);
 
@@ -112,8 +109,7 @@ public class PlayTest {
         play.roll(mockDefendingChar, mockAttackingChar, 20);
 
         //Assert
-        //assertEquals(1, everCharacter.getHitPoints());
-        //verify(mockDefendingChar).setHitPoints(1);
+        verify(mockDefendingChar).setHitPoints(1);
     }
 
     //move this to CharacterTest to test against method calculateHitPoints() verify using getHitPoints that constitution modifier was added
