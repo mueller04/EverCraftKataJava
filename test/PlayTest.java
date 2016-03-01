@@ -32,7 +32,8 @@ public class PlayTest {
     public void rollHitsIfMeetsOpponentsArmorClass(){
         //Arrange
         Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
-        Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(10);
+        Mockito.when(mockAttackingChar.getModifiedRollNumberCalculatePreTurnUpdate(anyInt())).thenReturn(10);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(10);
 
         //Act
         String result = play.roll(mockDefendingChar, mockAttackingChar, 10);
@@ -42,24 +43,10 @@ public class PlayTest {
     }
 
     @Test
-    public void rollHitsIfExceedsOpponentsArmorClass(){
-        //Arrange
-        Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
-        Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(10);
-
-
-        //Act
-        String result = play.roll(mockDefendingChar, mockAttackingChar, 11);
-
-        //Assert
-        assertEquals("it's a hit", result);
-    }
-
-    @Test
     public void rollFailsIfLessThanOpponentsArmorClass(){
         //Arrange
         Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
-        Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(10);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(10);
 
         //Act
         String result = play.roll(mockDefendingChar, mockAttackingChar, 9);
@@ -83,11 +70,11 @@ public class PlayTest {
     }
 
     @Test
-    public void afterRollingAttackRollModifierIsAdded(){
+    public void modifiedRollBeatsModifiedArmor(){
         //Arrange
         Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
-        Mockito.when(mockAttackingChar.getAttackRollModifierCalculatePreTurnUpdate()).thenReturn(2);
-        Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(9);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(9);
+        Mockito.when(mockAttackingChar.getModifiedRollNumberCalculatePreTurnUpdate(anyInt())).thenReturn(10);
 
         //Act
         String result = play.roll(mockDefendingChar, mockAttackingChar, 8);
@@ -100,10 +87,10 @@ public class PlayTest {
     public void afterRolling20StrengthModifierIsAddedAndDoubled(){
         //Arrange
         Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
-        Mockito.when(mockAttackingChar.getAttackRollModifierCalculatePreTurnUpdate()).thenReturn(0);
+        Mockito.when(mockAttackingChar.getModifiedRollNumberCalculatePreTurnUpdate(anyInt())).thenReturn(20);
         Mockito.when(mockAttackingChar.getAbilities().getStrengthModifier(anyInt())).thenReturn(2);
         Mockito.when(mockDefendingChar.getHitPoints()).thenReturn(5);
-        Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(10);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(10);
 
         //Act
         play.roll(mockDefendingChar, mockAttackingChar, 20);
@@ -130,7 +117,8 @@ public class PlayTest {
     public void successfulAttackEarns10ExperiencePoints(){
         //Arrange
         Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
-        Mockito.when(mockDefendingChar.getArmorPlusDexterity()).thenReturn(10);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(10);
+        Mockito.when(mockAttackingChar.getModifiedRollNumberCalculatePreTurnUpdate(10)).thenReturn(10);
 
         //Act
         play.roll(mockDefendingChar, mockAttackingChar, 10);

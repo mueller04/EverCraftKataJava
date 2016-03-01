@@ -69,7 +69,7 @@ public class EverCraftCharacterTest {
         //Arrange
 
         //Act
-        int result = everCharacter.getArmorPlusDexterity();
+        int result = everCharacter.getModifiedArmor();
 
         //Assert
         assertEquals(10, result);
@@ -110,7 +110,7 @@ public class EverCraftCharacterTest {
         everCharacter.getAbilities().setConstitutionScore(14);
 
         //Act
-        everCharacter.getAttackRollModifierCalculatePreTurnUpdate();
+        everCharacter.calculateHitPoints(0);
 
         //Assert
         int result = everCharacter.getHitPoints();
@@ -124,7 +124,7 @@ public class EverCraftCharacterTest {
 
         //Act
         everCharacter.setHitPoints(3);
-        everCharacter.getAttackRollModifierCalculatePreTurnUpdate();
+        everCharacter.calculateHitPoints(0);
 
         //Assert
         int result = everCharacter.getHitPoints();
@@ -188,7 +188,7 @@ public class EverCraftCharacterTest {
 
         //Act
         everCharacter.addExperiencePoints(3058);
-        everCharacter.getAttackRollModifierCalculatePreTurnUpdate();
+        everCharacter.getModifiedRollNumberCalculatePreTurnUpdate(0);
 
         //Assert
         int hitPoints = everCharacter.getHitPoints();
@@ -204,7 +204,7 @@ public class EverCraftCharacterTest {
         everCharacter.addExperiencePoints(4058);
 
         //Assert
-        assertEquals(2, everCharacter.getAttackRollModifierCalculatePreTurnUpdate());
+        assertEquals(2, everCharacter.getModifiedRollNumberCalculatePreTurnUpdate(0));
     }
 
     @Test
@@ -213,7 +213,7 @@ public class EverCraftCharacterTest {
         everCharacter.getAbilities().setDexterityScore(14);
 
         //Act
-        int result = everCharacter.getArmorPlusDexterity();
+        int result = everCharacter.getModifiedArmor();
 
         //Assert
         assertEquals(12, result);

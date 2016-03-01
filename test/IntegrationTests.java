@@ -22,7 +22,7 @@ public class IntegrationTests {
         //Arrange
         //Add enough experience points to level up to level 4 which adds 2 to attack modifier (1 for each even level achieved)
         attackingEverCharacter.addExperiencePoints(3000);
-        attackingEverCharacter.getAttackRollModifierCalculatePreTurnUpdate();
+
 
         //Act
         String result = play.roll(everCharacter, attackingEverCharacter, 8);

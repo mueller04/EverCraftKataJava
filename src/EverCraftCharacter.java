@@ -29,17 +29,19 @@ public class EverCraftCharacter {
         }
     }
 
-    public int getArmorPlusDexterity(){
+    public int getModifiedArmor(){
         int armor = 10;
         int dexterityScore = abilities.getDexterityScore();
-        return armor += abilities.getDexterityModifier(dexterityScore);
+        armor += abilities.getDexterityModifier(dexterityScore);
+        return armor;
     }
 
-    public int getAttackRollModifierCalculatePreTurnUpdate() {
+
+    public int getModifiedRollNumberCalculatePreTurnUpdate(int rollNumber) {
         int level = getLevel();
         calculateHitPoints(level);
         int attackRollModifier = getAttackRollModifier(level);
-        return attackRollModifier;
+        return rollNumber + attackRollModifier;
     }
 
 
@@ -56,7 +58,7 @@ public class EverCraftCharacter {
         return level;
     }
 
-    private void calculateHitPoints(int level){
+    public void calculateHitPoints(int level){
         int constitutionModifier = abilities.getConstitutionModifier(abilities.getConstitutionScore());
         hitPoints += constitutionModifier;
 

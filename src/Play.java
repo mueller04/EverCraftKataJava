@@ -3,14 +3,14 @@ public class Play {
 
     public String roll(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber){
 
-        defendingCharacter.getAttackRollModifierCalculatePreTurnUpdate();
-        int attackRollModifier = attackingCharacter.getAttackRollModifierCalculatePreTurnUpdate();
+        defendingCharacter.getModifiedRollNumberCalculatePreTurnUpdate(rollNumber);
 
-        int rollNumberAndAttackRollModifier = rollNumber + attackRollModifier;
+        int modifiedRollNumber = attackingCharacter.getModifiedRollNumberCalculatePreTurnUpdate(rollNumber);
 
-        if (rollNumberAndAttackRollModifier >= defendingCharacter.getArmorPlusDexterity()){
 
-            reduceDefendingCharacterHitPoints(defendingCharacter, attackingCharacter, rollNumberAndAttackRollModifier);
+        if (modifiedRollNumber >= defendingCharacter.getModifiedArmor()){
+
+            reduceDefendingCharacterHitPoints(defendingCharacter, attackingCharacter, modifiedRollNumber);
             defendingCharacter.updateLifeStatus();
             attackingCharacter.addExperiencePoints(10);
             return "it's a hit";
