@@ -9,9 +9,6 @@ import static org.mockito.Mockito.verify;
 public class PlayTest {
 
     Play play;
-    EverCraftCharacter everCharacter;
-    EverCraftCharacter attackingEverCharacter;
-
     EverCraftCharacter mockDefendingChar;
     EverCraftCharacter mockAttackingChar;
     Abilities mockAbilities;
@@ -19,13 +16,9 @@ public class PlayTest {
     @Before
     public void BeforeMethodClass() {
         play = new Play();
-        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
-        attackingEverCharacter = new EverCraftCharacter("attacking character", EverCraftCharacter.Alignment.Neutral);
-
         mockDefendingChar = Mockito.mock(EverCraftCharacter.class);
         mockAttackingChar = Mockito.mock(EverCraftCharacter.class);
         mockAbilities = Mockito.mock(Abilities.class);
-
     }
 
     @Test
@@ -57,7 +50,7 @@ public class PlayTest {
 
 
     @Test
-    public void modifiedRollBeatsModifiedArmor(){
+    public void higherRollBeatsModifiedArmor(){
         //Arrange
         Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
         Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(9);
