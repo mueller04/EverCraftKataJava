@@ -36,12 +36,36 @@ public class EverCraftCharacter {
         return armor;
     }
 
+    public int getModifiedRollNumber(int rollNumber) {
+        int strengthScore = this.getAbilities().getStrengthScore();
+        int strengthModifier = this.getAbilities().getStrengthModifier(strengthScore);
+        return rollNumber + strengthModifier;
+    }
 
-    public int getModifiedRollNumberCalculatePreTurnUpdate(int rollNumber) {
+
+    public int calculateHitPointsAndAttackStrength(boolean isCritical) {
         int level = getLevel();
         calculateHitPoints(level);
-        int attackRollModifier = getAttackRollModifier(level);
-        return rollNumber + attackRollModifier;
+
+        int strengthScore = this.getAbilities().getStrengthScore();
+        int strengthModifier = this.getAbilities().getStrengthModifier(strengthScore);
+
+        if (isCritical) {
+            strengthModifier *= 2;
+        }
+
+        int attackRollLevelModifier = getAttackRollModifier(level);
+        int totalAttackScore = 1 + attackRollLevelModifier + strengthModifier;
+
+        if (isCritical) {
+            totalAttackScore *= 2;
+        }
+
+        if (totalAttackScore < 1) {
+            totalAttackScore = 1;
+        }
+
+        return totalAttackScore;
     }
 
 
@@ -51,12 +75,18 @@ public class EverCraftCharacter {
 
     public int getLevel() {
         int level = 1;
-        if (experiencePoints != 0) {
-            int fractionalLevel = (experiencePoints / 1000) + 1;
-            level = (int) Math.floor(fractionalLevel);
+
+        if (experiencePoints == 0) {
+            experiencePoints = 1;
         }
+
+        int fractionalLevel = (experiencePoints / 1000) + 1;
+        level = (int) Math.floor(fractionalLevel);
+
         return level;
     }
+
+
 
     public void calculateHitPoints(int level){
         int constitutionModifier = abilities.getConstitutionModifier(abilities.getConstitutionScore());
@@ -69,6 +99,8 @@ public class EverCraftCharacter {
             hitPoints = 1;
         }
     }
+
+
 
     private int getAttackRollModifier(int level) {
         int fractionalLevel = (level / 2);

@@ -20,15 +20,14 @@ public class IntegrationTests {
     @Test
     public void rollModifierAddsToAttackRole(){
         //Arrange
-        //Add enough experience points to level up to level 4 which adds 2 to attack modifier (1 for each even level achieved)
+        //Add enough experience points to level up to level 4 which adds additional 2 to attack (1 for each even level achieved)
         attackingEverCharacter.addExperiencePoints(3000);
 
-
         //Act
-        String result = play.roll(everCharacter, attackingEverCharacter, 8);
+        String result = play.roll(everCharacter, attackingEverCharacter, 10);
 
         //Assert
-        assertEquals("it's a hit", result);
+        assertEquals(2, everCharacter.getHitPoints());
     }
 
 
@@ -85,6 +84,7 @@ public class IntegrationTests {
     @Test
     public void roll20TakesDoublePoints(){
         //Arrange
+        everCharacter.setHitPoints(5);
 
         //Act
         play.roll(everCharacter, attackingEverCharacter, 20);

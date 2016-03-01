@@ -188,7 +188,7 @@ public class EverCraftCharacterTest {
 
         //Act
         everCharacter.addExperiencePoints(3058);
-        everCharacter.getModifiedRollNumberCalculatePreTurnUpdate(0);
+        everCharacter.calculateHitPointsAndAttackStrength(false);
 
         //Assert
         int hitPoints = everCharacter.getHitPoints();
@@ -200,11 +200,11 @@ public class EverCraftCharacterTest {
         //Arrange
 
         //Act
-        //4058 gives you level 5 which means you earn 2 for having achieved level 4
+        //4058 gives you level 5 which means you earn additional 2 for having achieved level 4
         everCharacter.addExperiencePoints(4058);
 
         //Assert
-        assertEquals(2, everCharacter.getModifiedRollNumberCalculatePreTurnUpdate(0));
+        assertEquals(3, everCharacter.calculateHitPointsAndAttackStrength(false));
     }
 
     @Test
@@ -245,5 +245,42 @@ public class EverCraftCharacterTest {
         assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
     }
 
+    @Test
+    public void afterRolling20StrengthModifierIsAddedAndDoubledForAttackDamageAndAttackIsDoubled(){
+        //Arrange
+        everCharacter.getAbilities().setStrengthScore(15);
+        boolean rolled20 = true;
+
+        //Act
+        int result = everCharacter.calculateHitPointsAndAttackStrength(rolled20);
+
+        //Assert
+        assertEquals(10, result);
+    }
+
+    @Test
+    public void strengthScoreOf1ReturnsAttackDamageOf1(){
+        //Arrange
+        everCharacter.getAbilities().setStrengthScore(1);
+        boolean rolled20 = true;
+
+        //Act
+        int result = everCharacter.calculateHitPointsAndAttackStrength(rolled20);
+
+        //Assert
+        assertEquals(1, result);
+    }
+
+    @Test
+    public void strengthModifierIsAddedToAttack(){
+        //Arrange
+        everCharacter.getAbilities().setStrengthScore(15);
+
+        //Act
+        int result = everCharacter.calculateHitPointsAndAttackStrength(false);
+
+        //Assert
+        assertEquals(3, result);
+    }
 
 }
