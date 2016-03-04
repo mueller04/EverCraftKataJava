@@ -8,16 +8,20 @@ public class EverCraftCharacterTest {
 
     EverCraftCharacter everCharacter;
 
+    BlankTestAbilitiesClass blankTestAbilitiesClass;
+
     @Before
     public void beforeAllTests() {
-        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+        blankTestAbilitiesClass = new BlankTestAbilitiesClass();
+        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good, blankTestAbilitiesClass);
+
     }
 
     @Test
     public void canGetCharacterName(){
         //Arrange
         String expectedName = "Example Name";
-        everCharacter = new EverCraftCharacter(expectedName, EverCraftCharacter.Alignment.Good);
+        everCharacter = new EverCraftCharacter(expectedName, EverCraftCharacter.Alignment.Good, blankTestAbilitiesClass);
 
         //Act
         String result = everCharacter.getName();

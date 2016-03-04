@@ -15,7 +15,7 @@ public class CharacterClassTest {
         int expectedHitPoints = 10;
 
         //Act
-        String result = everCharacter.getHitPoints();
+        int result = everCharacter.getHitPoints();
 
         //Assert
         assertEquals(expectedHitPoints, result);

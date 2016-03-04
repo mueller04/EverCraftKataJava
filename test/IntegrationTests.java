@@ -9,12 +9,15 @@ public class IntegrationTests {
     Play play;
     EverCraftCharacter everCharacter;
     EverCraftCharacter attackingEverCharacter;
+    BlankTestAbilitiesClass blankTestAbilitiesClass;
 
     @Before
     public void beforeEachMethod(){
+        blankTestAbilitiesClass = new BlankTestAbilitiesClass();
+
+        everCharacter = new EverCraftCharacter("Defending Character", EverCraftCharacter.Alignment.Neutral, blankTestAbilitiesClass);
+        attackingEverCharacter = new EverCraftCharacter("Attacking Character", EverCraftCharacter.Alignment.Good, blankTestAbilitiesClass);
         play = new Play();
-        everCharacter = new EverCraftCharacter("Defending Character", EverCraftCharacter.Alignment.Neutral);
-        attackingEverCharacter = new EverCraftCharacter("Attacking Character", EverCraftCharacter.Alignment.Good);
     }
 
     @Test

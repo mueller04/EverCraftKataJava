@@ -15,12 +15,19 @@ public class EverCraftCharacter {
     private int experiencePoints = 0;
     private int hitPoints = 5;
     private Abilities abilities;
+    private CharacterClass characterClass;
 
-    public EverCraftCharacter(String name, Alignment alignment){
+    public EverCraftCharacter(String name, Alignment alignment, CharacterClass characterClass){
         this.name = name;
         this.alignment = alignment;
         this.lifeStatus = LifeStatus.Alive;
         this.abilities = new Abilities();
+        this.characterClass = characterClass;
+        getClassModifiers();
+    }
+
+    private void getClassModifiers(){
+        hitPoints *= characterClass.getHitPointMultiplierModifier();
     }
 
     public void updateLifeStatus(){
