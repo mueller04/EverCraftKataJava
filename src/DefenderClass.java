@@ -7,4 +7,10 @@ public class DefenderClass implements CharacterClass {
     public int getHitPointMultiplierModifier(){
         return hitPointMultiplierModifier;
     }
+
+    public void validateAlignment(EverCraftCharacter.Alignment alignment) throws IllegalArgumentException {
+        if (alignment == EverCraftCharacter.Alignment.Evil){
+            throw new IllegalArgumentException("Defender Class cannot have evil alignment");
+        }
+    }
 }
