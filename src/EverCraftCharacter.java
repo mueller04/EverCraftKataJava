@@ -93,6 +93,9 @@ public class EverCraftCharacter {
         if (characterClassEnum == Enum.CharacterClassEnum.ROGUE) {
             int dexterityScore = this.getAbilities().getDexterityScore();
             return this.getAbilities().getDexterityModifier(dexterityScore);
+        } else if (characterClassEnum == Enum.CharacterClassEnum.WARLORD) {
+            int strengthScore = this.getAbilities().getStrengthScore();
+            return (this.getAbilities().getStrengthModifier(strengthScore) * 2);
         } else {
             int strengthScore = this.getAbilities().getStrengthScore();
             return this.getAbilities().getStrengthModifier(strengthScore);

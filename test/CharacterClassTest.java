@@ -138,4 +138,18 @@ public class CharacterClassTest {
         }
     }
 
+    @Test
+    public void warlordClassDoublesStrengthModifier(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Neutral);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.WARLORD);
+        everCharacter.getAbilities().setStrengthScore(20);
+
+        //Act
+        int result = everCharacter.calculateHitPointsAndAttackStrength(false);
+
+        //Assert
+        assertEquals(11, result);
+    }
+
 }
