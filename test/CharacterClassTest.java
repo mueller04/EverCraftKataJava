@@ -85,4 +85,17 @@ public class CharacterClassTest {
         assertEquals(3, result);
     }
 
+    @Test
+    public void warlordClassAlignmentCannotBeGood(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        try {
+            //Act
+            everCharacter.setCharacterClass(Enum.CharacterClassEnum.WARLORD);
+        } catch (Exception e) {
+            //Assert
+            assertEquals(e.getMessage(), "Warlord Class cannot have good alignment");
+        }
+    }
+
 }

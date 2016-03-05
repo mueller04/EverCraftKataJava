@@ -18,8 +18,10 @@ public class EverCraftCharacter {
     }
 
     public void setCharacterClass(Enum.CharacterClassEnum characterClass){
-        if (alignment == Enum.Alignment.Evil && characterClass == Enum.CharacterClassEnum.DEFENDER){
+        if (alignment == Enum.Alignment.Evil && characterClass == Enum.CharacterClassEnum.DEFENDER) {
             throw new IllegalArgumentException("Defender Class cannot have evil alignment");
+        } else if (alignment == Enum.Alignment.Good && characterClass == Enum.CharacterClassEnum.WARLORD){
+            throw new IllegalArgumentException("Warlord Class cannot have good alignment");
         } else {
             this.characterClassEnum = characterClass;
             setClassModifiers();

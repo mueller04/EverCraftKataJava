@@ -13,7 +13,7 @@ public class IntegrationTests {
     @Before
     public void beforeEachMethod(){
         everCharacter = new EverCraftCharacter("Defending Character", Enum.Alignment.Neutral);
-        attackingEverCharacter = new EverCraftCharacter("Attacking Character", Enum.Alignment.Good);
+        attackingEverCharacter = new EverCraftCharacter("Attacking Character", Enum.Alignment.Neutral);
         play = new Play();
     }
 
