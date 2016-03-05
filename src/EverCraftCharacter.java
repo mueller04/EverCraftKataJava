@@ -62,7 +62,9 @@ public class EverCraftCharacter {
         int dexterityModifier = abilities.getDexterityModifier(dexterityScore);
 
         if (characterClassEnum == CharacterClassEnum.DEFENDER){
-            dexterityModifier *=2;
+            if (dexterityModifier >= 0) {
+                dexterityModifier *=2;
+            }
         }
 
         armor += dexterityModifier;
