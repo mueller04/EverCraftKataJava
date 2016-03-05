@@ -135,7 +135,11 @@ public class EverCraftCharacter {
         hitPoints += constitutionModifier;
 
         for (int i = 1; i < level; i++) {
-            hitPoints += (5 + constitutionModifier);
+            if (characterClassEnum == Enum.CharacterClassEnum.WARLORD) {
+                hitPoints += (6 + constitutionModifier);
+            } else {
+                hitPoints += (5 + constitutionModifier);
+            }
         }
         if (hitPoints < 1) {
             hitPoints = 1;

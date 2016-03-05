@@ -152,4 +152,20 @@ public class CharacterClassTest {
         assertEquals(11, result);
     }
 
+    @Test
+    public void eachAdditionalLevelAfterLevel1Adds6HitPointsPlusConstitutionModifierForWarlordClass(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Evil);
+        everCharacter.getAbilities().setConstitutionScore(12);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.WARLORD);
+
+        //Act
+        everCharacter.addExperiencePoints(3058);
+        everCharacter.calculateHitPointsAndAttackStrength(false);
+
+        //Assert
+        int hitPoints = everCharacter.getHitPoints();
+        assertEquals(27, hitPoints);
+    }
+
 }
