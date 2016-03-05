@@ -20,8 +20,10 @@ public class EverCraftCharacter {
     public void setCharacterClass(Enum.CharacterClassEnum characterClass){
         if (alignment == Enum.Alignment.Evil && characterClass == Enum.CharacterClassEnum.DEFENDER) {
             throw new IllegalArgumentException("Defender Class cannot have evil alignment");
-        } else if (alignment == Enum.Alignment.Good && characterClass == Enum.CharacterClassEnum.WARLORD){
+        } else if (alignment == Enum.Alignment.Good && characterClass == Enum.CharacterClassEnum.WARLORD) {
             throw new IllegalArgumentException("Warlord Class cannot have good alignment");
+        } else if ((alignment == Enum.Alignment.Good || alignment == Enum.Alignment.Evil) && characterClass == Enum.CharacterClassEnum.ROGUE) {
+            throw new IllegalArgumentException("Warlord Class cannot have good or evil alignment");
         } else {
             this.characterClassEnum = characterClass;
             setClassModifiers();
@@ -76,10 +78,8 @@ public class EverCraftCharacter {
         int attackRollLevelModifier = getAttackRollModifier(level);
         int totalAttackScore = 1 + attackRollLevelModifier + strengthModifier;
 
-        if (characterClassEnum == Enum.CharacterClassEnum.WARLORD && isCritical) {
-            totalAttackScore *= 3;
-        } else if (isCritical) {
-            totalAttackScore *= 2;
+        if (isCritical) {
+            totalAttackScore *= criticalHit();
         }
 
         if (totalAttackScore < 1) {
@@ -96,6 +96,14 @@ public class EverCraftCharacter {
         } else {
             int strengthScore = this.getAbilities().getStrengthScore();
             return this.getAbilities().getStrengthModifier(strengthScore);
+        }
+    }
+
+    private int criticalHit(){
+        if (characterClassEnum == Enum.CharacterClassEnum.WARLORD) {
+            return 3;
+        } else  {
+            return 2;
         }
     }
 

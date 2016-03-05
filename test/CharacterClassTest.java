@@ -112,4 +112,30 @@ public class CharacterClassTest {
         assertEquals(6, result);
     }
 
+    @Test
+    public void rogueClassAlignmentCannotBeGood(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        try {
+            //Act
+            everCharacter.setCharacterClass(Enum.CharacterClassEnum.ROGUE);
+        } catch (Exception e) {
+            //Assert
+            assertEquals(e.getMessage(), "Warlord Class cannot have good or evil alignment");
+        }
+    }
+
+    @Test
+    public void rogueClassAlignmentCannotBeEvil(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Evil);
+        try {
+            //Act
+            everCharacter.setCharacterClass(Enum.CharacterClassEnum.ROGUE);
+        } catch (Exception e) {
+            //Assert
+            assertEquals(e.getMessage(), "Warlord Class cannot have good or evil alignment");
+        }
+    }
+
 }
