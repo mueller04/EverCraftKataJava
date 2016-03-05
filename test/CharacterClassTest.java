@@ -45,7 +45,19 @@ public class CharacterClassTest {
 
         //Assert
         assertEquals(EverCraftCharacter.CharacterClassEnum.DEFAULT, everCharacter.getCharacterClass());
+    }
 
+    @Test
+    public void defenderClassDoublesDexterityModifierIfPositive(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Neutral);
+        everCharacter.getAbilities().setDexterityScore(14);
+
+        //Act
+        everCharacter.setCharacterClass(EverCraftCharacter.CharacterClassEnum.DEFENDER);
+
+        //Assert
+        assertEquals(14, everCharacter.getModifiedArmor());
     }
 
 }

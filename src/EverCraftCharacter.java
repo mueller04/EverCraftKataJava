@@ -59,7 +59,13 @@ public class EverCraftCharacter {
     public int getModifiedArmor(){
         int armor = 10;
         int dexterityScore = abilities.getDexterityScore();
-        armor += abilities.getDexterityModifier(dexterityScore);
+        int dexterityModifier = abilities.getDexterityModifier(dexterityScore);
+
+        if (characterClassEnum == CharacterClassEnum.DEFENDER){
+            dexterityModifier *=2;
+        }
+
+        armor += dexterityModifier;
         return armor;
     }
 
