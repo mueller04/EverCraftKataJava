@@ -36,7 +36,7 @@ public class EverCraftCharacter {
     }
 
     public void setCharacterClass(CharacterClassEnum characterClass){
-        if (alignment == EverCraftCharacter.Alignment.Evil){
+        if (alignment == EverCraftCharacter.Alignment.Evil && characterClass == CharacterClassEnum.DEFENDER){
             throw new IllegalArgumentException("Defender Class cannot have evil alignment");
         } else {
             this.characterClassEnum = characterClass;

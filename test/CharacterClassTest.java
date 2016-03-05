@@ -35,4 +35,17 @@ public class CharacterClassTest {
         }
     }
 
+    @Test
+    public void defaultClassAlignmentCanBeEvil(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Evil);
+
+        //Act
+        everCharacter.setCharacterClass(EverCraftCharacter.CharacterClassEnum.DEFAULT);
+
+        //Assert
+        assertEquals(EverCraftCharacter.CharacterClassEnum.DEFAULT, everCharacter.getCharacterClass());
+
+    }
+
 }
