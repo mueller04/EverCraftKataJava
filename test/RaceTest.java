@@ -36,4 +36,20 @@ public class RaceTest {
         //Assert
         assertEquals(12, result);
     }
+
+    @Test
+    public void dwarfIncreasesConstitutionModifierBy1(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setRace(Enum.RaceEnum.DWARF);
+        everCharacter.getAbilities().setConstitutionScore(20);
+
+
+
+        //Act
+        int result = everCharacter.getHitPoints();
+
+        //Assert
+        assertEquals(6, result);
+    }
 }

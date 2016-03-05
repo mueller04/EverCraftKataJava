@@ -146,6 +146,11 @@ public class EverCraftCharacter {
 
     public void calculateHitPoints(int level){
         int constitutionModifier = abilities.getConstitutionModifier(abilities.getConstitutionScore());
+
+        if (raceEnum == Enum.RaceEnum.DWARF) {
+            constitutionModifier += 1;
+        }
+
         hitPoints += constitutionModifier;
 
         for (int i = 1; i < level; i++) {
