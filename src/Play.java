@@ -20,7 +20,7 @@ public class Play {
     }
 
     private boolean isCritical(int rollNumber) {
-        return (rollNumber == 20);
+        return (rollNumber >= 20);
     }
 
     private void hitCharacter(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int modifiedRollNumber){
