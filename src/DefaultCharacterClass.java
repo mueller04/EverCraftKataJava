@@ -6,8 +6,4 @@ class DefaultCharacterClass implements CharacterClass {
         return hitPointMultiplierModifier;
     }
 
-    public void validateAlignment(EverCraftCharacter.Alignment alignment) throws IllegalArgumentException{
-        // DO NOTHING
-    }
-
 }
