@@ -67,8 +67,7 @@ public class EverCraftCharacter {
         int level = getLevel();
         calculateHitPoints(level);
 
-        int strengthScore = this.getAbilities().getStrengthScore();
-        int strengthModifier = this.getAbilities().getStrengthModifier(strengthScore);
+        int strengthModifier = calculateStrengthModifier();
 
         if (isCritical) {
             strengthModifier *= 2;
@@ -88,6 +87,16 @@ public class EverCraftCharacter {
         }
 
         return totalAttackScore;
+    }
+
+    private int calculateStrengthModifier(){
+        if (characterClassEnum == Enum.CharacterClassEnum.ROGUE) {
+            int dexterityScore = this.getAbilities().getDexterityScore();
+            return this.getAbilities().getDexterityModifier(dexterityScore);
+        } else {
+            int strengthScore = this.getAbilities().getStrengthScore();
+            return this.getAbilities().getStrengthModifier(strengthScore);
+        }
     }
 
 

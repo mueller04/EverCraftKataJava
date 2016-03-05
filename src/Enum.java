@@ -12,7 +12,7 @@ public class Enum {
     }
 
     public enum CharacterClassEnum {
-        DEFAULT, DEFENDER, WARLORD;
+        DEFAULT, DEFENDER, WARLORD, ROGUE;
     }
 
 }

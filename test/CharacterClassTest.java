@@ -98,4 +98,18 @@ public class CharacterClassTest {
         }
     }
 
+    @Test
+    public void rogueClassAddsDexterityModifierToStrength(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Neutral);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.ROGUE);
+        everCharacter.getAbilities().setDexterityScore(20);
+
+        //Act
+        int result = everCharacter.calculateHitPointsAndAttackStrength(false);
+
+        //Assert
+        assertEquals(6, result);
+    }
+
 }
