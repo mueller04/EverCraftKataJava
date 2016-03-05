@@ -155,13 +155,21 @@ public class EverCraftCharacter {
 
         for (int i = 1; i < level; i++) {
             if (characterClassEnum == Enum.CharacterClassEnum.WARLORD) {
-                hitPoints += (6 + constitutionModifier);
+                hitPoints += calculateLevelUpConstitutionModifier(6, constitutionModifier);
             } else {
-                hitPoints += (5 + constitutionModifier);
+                hitPoints += calculateLevelUpConstitutionModifier(5, constitutionModifier);
             }
         }
         if (hitPoints < 1) {
             hitPoints = 1;
+        }
+    }
+
+    private int calculateLevelUpConstitutionModifier(int base, int constitutionModifier){
+        if (raceEnum == Enum.RaceEnum.DWARF){
+            return (base + (constitutionModifier * 2));
+        } else {
+            return (base + constitutionModifier);
         }
     }
 

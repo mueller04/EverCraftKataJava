@@ -44,12 +44,24 @@ public class RaceTest {
         everCharacter.setRace(Enum.RaceEnum.DWARF);
         everCharacter.getAbilities().setConstitutionScore(20);
 
-
-
         //Act
-        int result = everCharacter.getHitPoints();
+        everCharacter.calculateHitPoints(1);
 
         //Assert
-        assertEquals(6, result);
+        assertEquals(11, everCharacter.getHitPoints());
+    }
+
+    @Test
+    public void dwarfDoublesConstitutionModifierPerLevelNonWarlord(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setRace(Enum.RaceEnum.DWARF);
+        everCharacter.getAbilities().setConstitutionScore(20);
+
+        //Act
+        everCharacter.calculateHitPoints(2);
+
+        //Assert
+        assertEquals(28, everCharacter.getHitPoints());
     }
 }

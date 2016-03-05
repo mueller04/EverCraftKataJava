@@ -3,7 +3,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ AbilitiesTest.class, EverCraftCharacterTest.class, PlayTest.class, CharacterClassTest.class, IntegrationTests.class})
+@SuiteClasses({ AbilitiesTest.class, EverCraftCharacterTest.class, PlayTest.class, CharacterClassTest.class, RaceTest.class, IntegrationTests.class})
 
     public class AllTests {
     }
