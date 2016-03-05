@@ -5,12 +5,12 @@ public class Play {
 
         defendingCharacter.calculateHitPointsAndAttackStrength(isCritical(rollNumber));
 
-
+        useCharacterClassAbilities(defendingCharacter, attackingCharacter);
 
         int modifiedRollNumber = attackingCharacter.getModifiedRollNumber(rollNumber);
 
         if (modifiedRollNumber >= defendingCharacter.getModifiedArmor()){
-            useCharacterClassAbilities(defendingCharacter, attackingCharacter);
+
             hitCharacter(defendingCharacter, attackingCharacter, modifiedRollNumber);
             return "it's a hit";
 
