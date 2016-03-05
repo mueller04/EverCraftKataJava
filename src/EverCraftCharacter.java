@@ -8,6 +8,7 @@ public class EverCraftCharacter {
     private int hitPoints = 5;
     private Abilities abilities;
     private Enum.CharacterClassEnum characterClassEnum;
+    private Enum.RaceEnum raceEnum;
 
     //Class Related
     private boolean rogueHitAgainstEvilFlag = false;
@@ -18,6 +19,7 @@ public class EverCraftCharacter {
         this.lifeStatus = Enum.LifeStatus.Alive;
         this.abilities = new Abilities();
         this.characterClassEnum = Enum.CharacterClassEnum.DEFAULT;
+        this.raceEnum = Enum.RaceEnum.HUMAN;
     }
 
     public void setCharacterClass(Enum.CharacterClassEnum characterClass){
@@ -81,7 +83,7 @@ public class EverCraftCharacter {
         int attackRollLevelModifier = getAttackRollModifier(level);
         int totalAttackScore = 1 + attackRollLevelModifier + strengthModifier;
 
-        if (rogueHitAgainstEvilFlag) {
+        if (rogueHitAgainstEvilFlag || raceEnum == Enum.RaceEnum.ORC) {
             totalAttackScore += 2;
         }
 
@@ -207,4 +209,6 @@ public class EverCraftCharacter {
     public Enum.CharacterClassEnum getCharacterClass() { return characterClassEnum; }
 
     public void setRogueHitAgainstEvilFlag() { rogueHitAgainstEvilFlag = true; }
+
+    public void setRace(Enum.RaceEnum raceEnum) { this.raceEnum = raceEnum; }
 }

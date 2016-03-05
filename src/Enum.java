@@ -15,4 +15,8 @@ public class Enum {
         DEFAULT, DEFENDER, WARLORD, ROGUE;
     }
 
+    public enum RaceEnum {
+        HUMAN, ORC;
+    }
+
 }
