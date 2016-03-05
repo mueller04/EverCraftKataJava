@@ -9,6 +9,9 @@ public class EverCraftCharacter {
     private Abilities abilities;
     private Enum.CharacterClassEnum characterClassEnum;
 
+    //Class Related
+    private boolean rogueHitAgainstEvilFlag = false;
+
     public EverCraftCharacter(String name, Enum.Alignment alignment){
         this.name = name;
         this.alignment = alignment;
@@ -77,6 +80,10 @@ public class EverCraftCharacter {
 
         int attackRollLevelModifier = getAttackRollModifier(level);
         int totalAttackScore = 1 + attackRollLevelModifier + strengthModifier;
+
+        if (rogueHitAgainstEvilFlag) {
+            totalAttackScore += 2;
+        }
 
         if (isCritical) {
             totalAttackScore *= criticalHit();
@@ -198,4 +205,6 @@ public class EverCraftCharacter {
     }
 
     public Enum.CharacterClassEnum getCharacterClass() { return characterClassEnum; }
+
+    public void setRogueHitAgainstEvilFlag() { rogueHitAgainstEvilFlag = true; }
 }

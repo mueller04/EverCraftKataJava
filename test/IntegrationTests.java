@@ -158,6 +158,31 @@ public class IntegrationTests {
         assertEquals("it's a hit", result);
     }
 
+    @Test
+    public void rogueHitAgainstEvilAdds2ToAttack(){
+        //Arrange
+        attackingEverCharacter.setCharacterClass(Enum.CharacterClassEnum.ROGUE);
+        everCharacter.setAlignment(Enum.Alignment.Evil);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 14);
+
+        //Assert
+        assertEquals(2, everCharacter.getHitPoints());
+    }
+
+    @Test
+    public void rogueHitAgainstGoodAddsRegularAttack(){
+        //Arrange
+        attackingEverCharacter.setCharacterClass(Enum.CharacterClassEnum.ROGUE);
+        everCharacter.setAlignment(Enum.Alignment.Good);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 14);
+
+        //Assert
+        assertEquals(4, everCharacter.getHitPoints());
+    }
 
 
 

@@ -38,6 +38,11 @@ public class Play {
         if (attackingCharacter.getCharacterClass() == Enum.CharacterClassEnum.WARLORD){
             defendingCharacter.getAbilities().setDexterityScore(10);
         }
+
+        if (attackingCharacter.getCharacterClass() == Enum.CharacterClassEnum.ROGUE
+                && defendingCharacter.getAlignment() == Enum.Alignment.Evil) {
+            attackingCharacter.setRogueHitAgainstEvilFlag();
+        }
     }
 
 }
