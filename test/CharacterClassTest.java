@@ -11,8 +11,8 @@ public class CharacterClassTest {
     @Test
     public void defenderClassIncreasesHitPoints(){
         //Arrange
-        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
-        everCharacter.setCharacterClass(EverCraftCharacter.CharacterClassEnum.DEFENDER);
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.DEFENDER);
         int expectedHitPoints = 10;
 
         //Act
@@ -25,10 +25,10 @@ public class CharacterClassTest {
     @Test
     public void defenderClassAlignmentCannotBeEvil(){
         //Arrange
-        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Evil);
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Evil);
         try {
             //Act
-            everCharacter.setCharacterClass(EverCraftCharacter.CharacterClassEnum.DEFENDER);
+            everCharacter.setCharacterClass(Enum.CharacterClassEnum.DEFENDER);
         } catch (Exception e) {
             //Assert
             assertEquals(e.getMessage(), "Defender Class cannot have evil alignment");
@@ -38,23 +38,23 @@ public class CharacterClassTest {
     @Test
     public void defaultClassAlignmentCanBeEvil(){
         //Arrange
-        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Evil);
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Evil);
 
         //Act
-        everCharacter.setCharacterClass(EverCraftCharacter.CharacterClassEnum.DEFAULT);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.DEFAULT);
 
         //Assert
-        assertEquals(EverCraftCharacter.CharacterClassEnum.DEFAULT, everCharacter.getCharacterClass());
+        assertEquals(Enum.CharacterClassEnum.DEFAULT, everCharacter.getCharacterClass());
     }
 
     @Test
     public void defenderClassDoublesDexterityModifierIfPositive(){
         //Arrange
-        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Neutral);
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Neutral);
         everCharacter.getAbilities().setDexterityScore(14);
 
         //Act
-        everCharacter.setCharacterClass(EverCraftCharacter.CharacterClassEnum.DEFENDER);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.DEFENDER);
 
         //Assert
         assertEquals(14, everCharacter.getModifiedArmor());
@@ -63,11 +63,11 @@ public class CharacterClassTest {
     @Test
     public void defenderClassRegularDexterityModifierIfNegative(){
         //Arrange
-        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Neutral);
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Neutral);
         everCharacter.getAbilities().setDexterityScore(5);
 
         //Act
-        everCharacter.setCharacterClass(EverCraftCharacter.CharacterClassEnum.DEFENDER);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.DEFENDER);
 
         //Assert
         assertEquals(6, everCharacter.getModifiedArmor());

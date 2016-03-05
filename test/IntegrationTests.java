@@ -12,8 +12,8 @@ public class IntegrationTests {
 
     @Before
     public void beforeEachMethod(){
-        everCharacter = new EverCraftCharacter("Defending Character", EverCraftCharacter.Alignment.Neutral);
-        attackingEverCharacter = new EverCraftCharacter("Attacking Character", EverCraftCharacter.Alignment.Good);
+        everCharacter = new EverCraftCharacter("Defending Character", Enum.Alignment.Neutral);
+        attackingEverCharacter = new EverCraftCharacter("Attacking Character", Enum.Alignment.Good);
         play = new Play();
     }
 
@@ -104,7 +104,7 @@ public class IntegrationTests {
         play.roll(everCharacter, attackingEverCharacter, 20);
 
         //Assert
-        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+        assertEquals(Enum.LifeStatus.Dead, everCharacter.getLifeStatus());
     }
 
     //same as above
@@ -117,7 +117,7 @@ public class IntegrationTests {
         play.roll(everCharacter, attackingEverCharacter, 20);
 
         //Assert
-        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+        assertEquals(Enum.LifeStatus.Dead, everCharacter.getLifeStatus());
     }
 
     @Test
@@ -129,13 +129,13 @@ public class IntegrationTests {
         play.roll(everCharacter, attackingEverCharacter, 20);
 
         //Assert
-        assertEquals(EverCraftCharacter.LifeStatus.Alive, everCharacter.getLifeStatus());
+        assertEquals(Enum.LifeStatus.Alive, everCharacter.getLifeStatus());
     }
 
     @Test
     public void defendingClassIgnoresAttackersStrengthModifier(){
         //Arrange
-        everCharacter.setCharacterClass(EverCraftCharacter.CharacterClassEnum.DEFENDER);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.DEFENDER);
         attackingEverCharacter.getAbilities().setStrengthScore(20);
 
         //Act

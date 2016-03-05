@@ -10,7 +10,7 @@ public class EverCraftCharacterTest {
 
     @Before
     public void beforeAllTests() {
-        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
 
     }
 
@@ -18,7 +18,7 @@ public class EverCraftCharacterTest {
     public void canGetCharacterName(){
         //Arrange
         String expectedName = "Example Name";
-        everCharacter = new EverCraftCharacter(expectedName, EverCraftCharacter.Alignment.Good);
+        everCharacter = new EverCraftCharacter(expectedName, Enum.Alignment.Good);
 
         //Act
         String result = everCharacter.getName();
@@ -43,10 +43,10 @@ public class EverCraftCharacterTest {
     @Test
     public void canGetAlignment(){
         //Arrange
-        EverCraftCharacter.Alignment expectedAlignment = EverCraftCharacter.Alignment.Good;
+        Enum.Alignment expectedAlignment = Enum.Alignment.Good;
 
         //Act
-        EverCraftCharacter.Alignment result = everCharacter.getAlignment();
+        Enum.Alignment result = everCharacter.getAlignment();
 
         //Assert
         assertEquals(expectedAlignment, result);
@@ -57,11 +57,11 @@ public class EverCraftCharacterTest {
         //Arrange
 
         //Act
-        EverCraftCharacter.Alignment expectedAlignment = EverCraftCharacter.Alignment.Evil;
+        Enum.Alignment expectedAlignment = Enum.Alignment.Evil;
         everCharacter.setAlignment(expectedAlignment);
 
         //Assert
-        EverCraftCharacter.Alignment result = everCharacter.getAlignment();
+        Enum.Alignment result = everCharacter.getAlignment();
         assertEquals(expectedAlignment, result);
     }
 
@@ -224,26 +224,26 @@ public class EverCraftCharacterTest {
     public void whenUpdateLifeStatusIsCalledAndZeroHPCharacterIsDead(){
         //Arrange
         everCharacter.setHitPoints(0);
-        everCharacter.setLifeStatus(EverCraftCharacter.LifeStatus.Alive);
+        everCharacter.setLifeStatus(Enum.LifeStatus.Alive);
 
         //Act
         everCharacter.updateLifeStatus();
 
         //Assert
-        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+        assertEquals(Enum.LifeStatus.Dead, everCharacter.getLifeStatus());
     }
 
     @Test
     public void whenUpdateLifeStatusIsCalledAndBelowZeroHPCharacterIsDead(){
         //Arrange
         everCharacter.setHitPoints(-3);
-        everCharacter.setLifeStatus(EverCraftCharacter.LifeStatus.Alive);
+        everCharacter.setLifeStatus(Enum.LifeStatus.Alive);
 
         //Act
         everCharacter.updateLifeStatus();
 
         //Assert
-        assertEquals(EverCraftCharacter.LifeStatus.Dead, everCharacter.getLifeStatus());
+        assertEquals(Enum.LifeStatus.Dead, everCharacter.getLifeStatus());
     }
 
     @Test

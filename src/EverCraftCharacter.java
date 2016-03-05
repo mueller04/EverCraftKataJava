@@ -1,42 +1,24 @@
 
 public class EverCraftCharacter {
 
-    public enum Alignment {
-        Good, Evil, Neutral
-    }
-
-    public enum LifeStatus {
-        Alive, Dead
-    }
-
-    public enum CharacterClassEnum {
-        DEFAULT(new DefaultCharacterClass()), DEFENDER(new DefenderClass());
-
-        public CharacterClass characterClass;
-
-        CharacterClassEnum(CharacterClass characterClass) {
-            this.characterClass = characterClass;
-        }
-    }
-
     private String name;
-    private Alignment alignment;
-    private LifeStatus lifeStatus;
+    private Enum.Alignment alignment;
+    private Enum.LifeStatus lifeStatus;
     private int experiencePoints = 0;
     private int hitPoints = 5;
     private Abilities abilities;
-    private CharacterClassEnum characterClassEnum;
+    private Enum.CharacterClassEnum characterClassEnum;
 
-    public EverCraftCharacter(String name, Alignment alignment){
+    public EverCraftCharacter(String name, Enum.Alignment alignment){
         this.name = name;
         this.alignment = alignment;
-        this.lifeStatus = LifeStatus.Alive;
+        this.lifeStatus = Enum.LifeStatus.Alive;
         this.abilities = new Abilities();
-        this.characterClassEnum = CharacterClassEnum.DEFAULT;
+        this.characterClassEnum = Enum.CharacterClassEnum.DEFAULT;
     }
 
-    public void setCharacterClass(CharacterClassEnum characterClass){
-        if (alignment == EverCraftCharacter.Alignment.Evil && characterClass == CharacterClassEnum.DEFENDER){
+    public void setCharacterClass(Enum.CharacterClassEnum characterClass){
+        if (alignment == Enum.Alignment.Evil && characterClass == Enum.CharacterClassEnum.DEFENDER){
             throw new IllegalArgumentException("Defender Class cannot have evil alignment");
         } else {
             this.characterClassEnum = characterClass;
@@ -52,7 +34,7 @@ public class EverCraftCharacter {
 
     public void updateLifeStatus(){
         if (this.getHitPoints() <= 0){
-            this.setLifeStatus(EverCraftCharacter.LifeStatus.Dead);
+            this.setLifeStatus(Enum.LifeStatus.Dead);
         }
     }
 
@@ -61,7 +43,7 @@ public class EverCraftCharacter {
         int dexterityScore = abilities.getDexterityScore();
         int dexterityModifier = abilities.getDexterityModifier(dexterityScore);
 
-        if (characterClassEnum == CharacterClassEnum.DEFENDER){
+        if (characterClassEnum == Enum.CharacterClassEnum.DEFENDER){
             if (dexterityModifier >= 0) {
                 dexterityModifier *=2;
             }
@@ -152,19 +134,19 @@ public class EverCraftCharacter {
         this.name = name;
     }
 
-    public Alignment getAlignment(){
+    public Enum.Alignment getAlignment(){
         return alignment;
     }
 
-    public void setAlignment(Alignment alignment){
+    public void setAlignment(Enum.Alignment alignment){
         this.alignment = alignment;
     }
 
-    public LifeStatus getLifeStatus(){
+    public Enum.LifeStatus getLifeStatus(){
         return lifeStatus;
     }
 
-    public void setLifeStatus(LifeStatus lifeStatus){
+    public void setLifeStatus(Enum.LifeStatus lifeStatus){
         this.lifeStatus = lifeStatus;
     }
 
@@ -186,5 +168,5 @@ public class EverCraftCharacter {
         this.hitPoints = hitPoints;
     }
 
-    public CharacterClassEnum getCharacterClass() { return characterClassEnum; }
+    public Enum.CharacterClassEnum getCharacterClass() { return characterClassEnum; }
 }

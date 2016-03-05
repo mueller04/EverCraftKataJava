@@ -31,7 +31,7 @@ public class Play {
     }
 
     private void useCharacterClassAbilities(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter){
-        if (defendingCharacter.getCharacterClass() == EverCraftCharacter.CharacterClassEnum.DEFENDER){
+        if (defendingCharacter.getCharacterClass() == Enum.CharacterClassEnum.DEFENDER){
             attackingCharacter.getAbilities().setStrengthScore(10);
         }
     }
