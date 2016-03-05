@@ -34,6 +34,10 @@ public class Play {
         if (defendingCharacter.getCharacterClass() == Enum.CharacterClassEnum.DEFENDER){
             attackingCharacter.getAbilities().setStrengthScore(10);
         }
+
+        if (attackingCharacter.getCharacterClass() == Enum.CharacterClassEnum.WARLORD){
+            defendingCharacter.getAbilities().setDexterityScore(10);
+        }
     }
 
 }

@@ -133,7 +133,7 @@ public class IntegrationTests {
     }
 
     @Test
-    public void defendingClassIgnoresAttackersStrengthModifier(){
+    public void defenderClassIgnoresAttackersStrengthModifier(){
         //Arrange
         everCharacter.setCharacterClass(Enum.CharacterClassEnum.DEFENDER);
         attackingEverCharacter.getAbilities().setStrengthScore(20);
@@ -145,7 +145,18 @@ public class IntegrationTests {
         assertEquals(9, everCharacter.getHitPoints());
     }
 
+    @Test
+    public void warlordClassIgnoresDefendersDexterityModifier(){
+        //Arrange
+        attackingEverCharacter.setCharacterClass(Enum.CharacterClassEnum.WARLORD);
+        everCharacter.getAbilities().setDexterityScore(20);
 
+        //Act
+        String result = play.roll(everCharacter, attackingEverCharacter, 14);
+
+        //Assert
+        assertEquals("it's a hit", result);
+    }
 
 
 
