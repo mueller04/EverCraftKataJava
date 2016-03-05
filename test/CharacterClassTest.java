@@ -12,7 +12,8 @@ public class CharacterClassTest {
     public void defenderClassIncreasesHitPoints(){
         //Arrange
         defender = new DefenderClass();
-        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good, defender);
+        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Good);
+        everCharacter.setCharacterClass(defender);
         int expectedHitPoints = 10;
 
         //Act
@@ -26,9 +27,10 @@ public class CharacterClassTest {
     public void defenderClassAlignmentCannotBeEvil(){
         //Arrange
         defender = new DefenderClass();
+        everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Evil);
         try {
             //Act
-            everCharacter = new EverCraftCharacter("Example Name", EverCraftCharacter.Alignment.Evil, defender);
+            everCharacter.setCharacterClass(defender);
         } catch (Exception e) {
             //Assert
             assertEquals(e.getMessage(), "Defender Class cannot have evil alignment");

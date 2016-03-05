@@ -1,4 +1,4 @@
-class BlankTestAbilitiesClass implements CharacterClass {
+class DefaultCharacterClass implements CharacterClass {
 
     int hitPointMultiplierModifier = 1;
 

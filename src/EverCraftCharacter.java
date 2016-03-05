@@ -17,20 +17,27 @@ public class EverCraftCharacter {
     private Abilities abilities;
     public CharacterClass characterClass;
 
-    public EverCraftCharacter(String name, Alignment alignment, CharacterClass characterClass){
+    public EverCraftCharacter(String name, Alignment alignment){
         this.name = name;
         this.alignment = alignment;
         this.lifeStatus = LifeStatus.Alive;
         this.abilities = new Abilities();
-        this.characterClass = characterClass;
+        characterClass = new DefaultCharacterClass();
+    }
 
-        getClassModifiers();
+    public void setCharacterClass(CharacterClass characterClass){
+        if (alignment == EverCraftCharacter.Alignment.Evil){
+            throw new IllegalArgumentException("Defender Class cannot have evil alignment");
+        } else {
+            this.characterClass = characterClass;
+            setClassModifiers();
+        }
 
     }
 
-    private void getClassModifiers(){
+
+    private void setClassModifiers(){
         hitPoints *= characterClass.getHitPointMultiplierModifier();
-        characterClass.validateAlignment(alignment);
     }
 
     public void updateLifeStatus(){
