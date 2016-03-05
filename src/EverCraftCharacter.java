@@ -50,6 +50,11 @@ public class EverCraftCharacter {
 
     public int getModifiedArmor(){
         int armor = 10;
+
+        if (raceEnum == Enum.RaceEnum.ORC){
+            armor += 2;
+        }
+
         int dexterityScore = abilities.getDexterityScore();
         int dexterityModifier = abilities.getDexterityModifier(dexterityScore);
 

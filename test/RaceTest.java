@@ -22,4 +22,18 @@ public class RaceTest {
         //Assert
         assertEquals(3, result);
     }
+
+    @Test
+    public void orcIncreasesArmorBy2(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setRace(Enum.RaceEnum.ORC);
+
+
+        //Act
+        int result = everCharacter.getModifiedArmor();
+
+        //Assert
+        assertEquals(12, result);
+    }
 }
