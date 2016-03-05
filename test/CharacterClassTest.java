@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 public class CharacterClassTest {
 
     EverCraftCharacter everCharacter;
-    DefenderClass defender;
 
 
     @Test
@@ -71,6 +70,19 @@ public class CharacterClassTest {
 
         //Assert
         assertEquals(6, everCharacter.getModifiedArmor());
+    }
+
+    @Test
+    public void warlordClassTripleDamageOnCriticalHits(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Evil);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.WARLORD);
+
+        //Act
+        int result = everCharacter.calculateHitPointsAndAttackStrength(true);
+
+        //Assert
+        assertEquals(3, result);
     }
 
 }

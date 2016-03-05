@@ -24,12 +24,13 @@ public class EverCraftCharacter {
             this.characterClassEnum = characterClass;
             setClassModifiers();
         }
-
     }
 
-
     private void setClassModifiers(){
-        hitPoints *= characterClassEnum.characterClass.getHitPointMultiplierModifier();
+        if (characterClassEnum == Enum.CharacterClassEnum.DEFENDER) {
+            hitPoints *= 2;
+        }
+
     }
 
     public void updateLifeStatus(){
@@ -74,7 +75,9 @@ public class EverCraftCharacter {
         int attackRollLevelModifier = getAttackRollModifier(level);
         int totalAttackScore = 1 + attackRollLevelModifier + strengthModifier;
 
-        if (isCritical) {
+        if (characterClassEnum == Enum.CharacterClassEnum.WARLORD && isCritical) {
+            totalAttackScore *= 3;
+        } else if (isCritical) {
             totalAttackScore *= 2;
         }
 

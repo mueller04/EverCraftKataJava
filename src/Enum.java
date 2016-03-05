@@ -12,13 +12,7 @@ public class Enum {
     }
 
     public enum CharacterClassEnum {
-        DEFAULT(new DefaultCharacterClass()), DEFENDER(new DefenderClass());
-
-        public CharacterClass characterClass;
-
-        CharacterClassEnum(CharacterClass characterClass) {
-            this.characterClass = characterClass;
-        }
+        DEFAULT, DEFENDER, WARLORD;
     }
 
 }
