@@ -52,7 +52,7 @@ public class RaceTest {
     }
 
     @Test
-    public void dwarfDoublesConstitutionModifierPerLevelNonWarlord(){
+        public void dwarfDoublesConstitutionModifierPerLevelNonWarlord(){
         //Arrange
         everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
         everCharacter.setRace(Enum.RaceEnum.DWARF);

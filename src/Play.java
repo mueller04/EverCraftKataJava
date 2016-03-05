@@ -12,9 +12,11 @@ public class Play {
         if (modifiedRollNumber >= defendingCharacter.getModifiedArmor()){
 
             hitCharacter(defendingCharacter, attackingCharacter, modifiedRollNumber);
+            clearFlags(defendingCharacter, attackingCharacter);
             return "it's a hit";
 
         } else {
+            clearFlags(defendingCharacter, attackingCharacter);
             return "attack glanced off the armor";
         }
     }
@@ -43,6 +45,16 @@ public class Play {
                 && defendingCharacter.getAlignment() == Enum.Alignment.Evil) {
             attackingCharacter.setRogueHitAgainstEvilFlag();
         }
+
+        if (attackingCharacter.getRace() == Enum.RaceEnum.DWARF
+                && defendingCharacter.getRace() == Enum.RaceEnum.ORC) {
+            attackingCharacter.setDwarfHitAgainstOrcFlag();
+        }
+    }
+
+    private void clearFlags(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter){
+        defendingCharacter.clearFlags();
+        attackingCharacter.clearFlags();
     }
 
 }

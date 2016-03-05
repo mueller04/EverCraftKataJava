@@ -198,4 +198,20 @@ public class IntegrationTests {
         assertEquals(11, everCharacter.getHitPoints());
     }
 
+    @Test
+    public void dwarfHitAgainstOrcAdds2ToRegularAttack(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Defending Character", Enum.Alignment.Neutral);
+        attackingEverCharacter = new EverCraftCharacter("Attacking Character", Enum.Alignment.Neutral);
+        attackingEverCharacter.setCharacterClass(Enum.CharacterClassEnum.DEFAULT);
+        everCharacter.setRace(Enum.RaceEnum.ORC);
+        attackingEverCharacter.setRace(Enum.RaceEnum.DWARF);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 12);
+
+        //Assert
+        assertEquals(2, everCharacter.getHitPoints());
+    }
+
 }

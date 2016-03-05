@@ -13,6 +13,9 @@ public class EverCraftCharacter {
     //Class Related
     private boolean rogueHitAgainstEvilFlag = false;
 
+    //Race Related
+    private boolean dwarfHitAgainstOrcFlag = false;
+
     public EverCraftCharacter(String name, Enum.Alignment alignment){
         this.name = name;
         this.alignment = alignment;
@@ -88,7 +91,15 @@ public class EverCraftCharacter {
         int attackRollLevelModifier = getAttackRollModifier(level);
         int totalAttackScore = 1 + attackRollLevelModifier + strengthModifier;
 
-        if (rogueHitAgainstEvilFlag || raceEnum == Enum.RaceEnum.ORC) {
+        if (raceEnum == Enum.RaceEnum.ORC) {
+            totalAttackScore += 2;
+        }
+
+        if (rogueHitAgainstEvilFlag) {
+            totalAttackScore += 2;
+        }
+
+        if (dwarfHitAgainstOrcFlag) {
             totalAttackScore += 2;
         }
 
@@ -181,6 +192,11 @@ public class EverCraftCharacter {
         return attackRollModifier;
     }
 
+    public void clearFlags(){
+        rogueHitAgainstEvilFlag = false;
+        dwarfHitAgainstOrcFlag = false;
+    }
+
     //Getters and Setters
     public String getName(){
         return name;
@@ -226,7 +242,11 @@ public class EverCraftCharacter {
 
     public Enum.CharacterClassEnum getCharacterClass() { return characterClassEnum; }
 
+    public Enum.RaceEnum getRace() { return raceEnum; }
+
     public void setRogueHitAgainstEvilFlag() { rogueHitAgainstEvilFlag = true; }
+
+    public void setDwarfHitAgainstOrcFlag() { dwarfHitAgainstOrcFlag = true; }
 
     public void setRace(Enum.RaceEnum raceEnum) { this.raceEnum = raceEnum; }
 }
