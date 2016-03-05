@@ -10,9 +10,7 @@ public class Play {
         int modifiedRollNumber = attackingCharacter.getModifiedRollNumber(rollNumber);
 
         if (modifiedRollNumber >= defendingCharacter.getModifiedArmor()){
-            defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - attackStrength);
-            defendingCharacter.updateLifeStatus();
-            attackingCharacter.addExperiencePoints(10);
+            hitCharacter(defendingCharacter, attackingCharacter, attackStrength);
             return "it's a hit";
 
         } else {
@@ -22,6 +20,12 @@ public class Play {
 
     private boolean isCritical(int rollNumber) {
         return (rollNumber == 20);
+    }
+
+    private void hitCharacter(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int attackStrength){
+        defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - attackStrength);
+        defendingCharacter.updateLifeStatus();
+        attackingCharacter.addExperiencePoints(10);
     }
 
 }
