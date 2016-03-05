@@ -135,7 +135,7 @@ public class IntegrationTests {
     @Test
     public void defendingClassIgnoresAttackersStrengthModifier(){
         //Arrange
-        everCharacter.setCharacterClass(new DefenderClass());
+        everCharacter.setCharacterClass(EverCraftCharacter.CharacterClassEnum.DEFENDER);
         attackingEverCharacter.getAbilities().setStrengthScore(20);
 
         //Act

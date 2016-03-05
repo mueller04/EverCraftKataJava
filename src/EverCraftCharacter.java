@@ -25,7 +25,6 @@ public class EverCraftCharacter {
     private int experiencePoints = 0;
     private int hitPoints = 5;
     private Abilities abilities;
-    private CharacterClass characterClass;
     private CharacterClassEnum characterClassEnum;
 
     public EverCraftCharacter(String name, Alignment alignment){
@@ -34,15 +33,13 @@ public class EverCraftCharacter {
         this.lifeStatus = LifeStatus.Alive;
         this.abilities = new Abilities();
         this.characterClassEnum = CharacterClassEnum.DEFAULT;
-        //characterClass = new DefaultCharacterClass();
     }
 
-    public void setCharacterClass(CharacterClass characterClass){
+    public void setCharacterClass(CharacterClassEnum characterClass){
         if (alignment == EverCraftCharacter.Alignment.Evil){
             throw new IllegalArgumentException("Defender Class cannot have evil alignment");
         } else {
-            this.characterClass = characterClass;
-            this.characterClassEnum = CharacterClassEnum.DEFENDER;
+            this.characterClassEnum = characterClass;
             setClassModifiers();
         }
 
@@ -50,7 +47,7 @@ public class EverCraftCharacter {
 
 
     private void setClassModifiers(){
-        hitPoints *= characterClass.getHitPointMultiplierModifier();
+        hitPoints *= characterClassEnum.characterClass.getHitPointMultiplierModifier();
     }
 
     public void updateLifeStatus(){
