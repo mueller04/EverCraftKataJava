@@ -132,5 +132,18 @@ public class IntegrationTests {
         assertEquals(EverCraftCharacter.LifeStatus.Alive, everCharacter.getLifeStatus());
     }
 
+    @Test
+    public void defendingClassIgnoresAttackersStrengthModifier(){
+        //Arrange
+        everCharacter.setCharacterClass(new DefenderClass());
+        attackingEverCharacter.getAbilities().setStrengthScore(20);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 11);
+
+        //Assert
+        assertEquals(9, everCharacter.getHitPoints());
+    }
+
 
 }

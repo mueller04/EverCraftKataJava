@@ -9,20 +9,32 @@ public class EverCraftCharacter {
         Alive, Dead
     }
 
+    public enum CharacterClassEnum {
+        DEFAULT(new DefaultCharacterClass()), DEFENDER(new DefenderClass());
+
+        public CharacterClass characterClass;
+
+        CharacterClassEnum(CharacterClass characterClass) {
+            this.characterClass = characterClass;
+        }
+    }
+
     private String name;
     private Alignment alignment;
     private LifeStatus lifeStatus;
     private int experiencePoints = 0;
     private int hitPoints = 5;
     private Abilities abilities;
-    public CharacterClass characterClass;
+    private CharacterClass characterClass;
+    private CharacterClassEnum characterClassEnum;
 
     public EverCraftCharacter(String name, Alignment alignment){
         this.name = name;
         this.alignment = alignment;
         this.lifeStatus = LifeStatus.Alive;
         this.abilities = new Abilities();
-        characterClass = new DefaultCharacterClass();
+        this.characterClassEnum = CharacterClassEnum.DEFAULT;
+        //characterClass = new DefaultCharacterClass();
     }
 
     public void setCharacterClass(CharacterClass characterClass){
@@ -30,6 +42,7 @@ public class EverCraftCharacter {
             throw new IllegalArgumentException("Defender Class cannot have evil alignment");
         } else {
             this.characterClass = characterClass;
+            this.characterClassEnum = CharacterClassEnum.DEFENDER;
             setClassModifiers();
         }
 
@@ -168,5 +181,5 @@ public class EverCraftCharacter {
         this.hitPoints = hitPoints;
     }
 
-
+    public CharacterClassEnum getCharacterClass() { return characterClassEnum; }
 }
