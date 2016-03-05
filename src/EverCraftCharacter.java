@@ -110,7 +110,7 @@ public class EverCraftCharacter {
     }
 
     private int criticalHit(){
-        if (characterClassEnum == Enum.CharacterClassEnum.WARLORD) {
+        if (characterClassEnum == Enum.CharacterClassEnum.WARLORD || rogueHitAgainstEvilFlag) {
             return 3;
         } else  {
             return 2;

@@ -184,6 +184,18 @@ public class IntegrationTests {
         assertEquals(4, everCharacter.getHitPoints());
     }
 
+    @Test
+    public void rogueHitAgainstEvilAdds2AndMultiplesBy3ToAttackWhenCrit(){
+        //Arrange
+        attackingEverCharacter.setCharacterClass(Enum.CharacterClassEnum.ROGUE);
+        everCharacter.setAlignment(Enum.Alignment.Evil);
+        everCharacter.setHitPoints(20);
 
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 20);
 
+        //Assert
+        assertEquals(11, everCharacter.getHitPoints());
     }
+
+}
