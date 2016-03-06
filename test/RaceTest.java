@@ -78,4 +78,17 @@ public class RaceTest {
         //Assert
         assertEquals(9, everCharacter.getHitPoints());
     }
+
+    @Test
+    public void elfAdds1ToDexterityModifier(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setRace(Enum.RaceEnum.ELF);
+
+        //Act
+        int result = everCharacter.getModifiedArmor();
+
+        //Assert
+        assertEquals(11, result);
+    }
 }

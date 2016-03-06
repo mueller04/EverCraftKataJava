@@ -58,6 +58,13 @@ public class EverCraftCharacter {
             armor += 2;
         }
 
+        int dexterityModifier = calculateDexterityModifier();
+
+        armor += dexterityModifier;
+        return armor;
+    }
+
+    private int calculateDexterityModifier() {
         int dexterityScore = abilities.getDexterityScore();
         int dexterityModifier = abilities.getDexterityModifier(dexterityScore);
 
@@ -66,9 +73,10 @@ public class EverCraftCharacter {
                 dexterityModifier *=2;
             }
         }
-
-        armor += dexterityModifier;
-        return armor;
+        if (raceEnum == Enum.RaceEnum.ELF) {
+            dexterityModifier += 1;
+        }
+        return dexterityModifier;
     }
 
     public int getModifiedRollNumber(int rollNumber) {
