@@ -64,4 +64,18 @@ public class RaceTest {
         //Assert
         assertEquals(28, everCharacter.getHitPoints());
     }
+
+    @Test
+    public void elfSubtractsFrom1ToConstitutionModifier(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setRace(Enum.RaceEnum.ELF);
+        everCharacter.getAbilities().setConstitutionScore(20);
+
+        //Act
+        everCharacter.calculateHitPoints(1);
+
+        //Assert
+        assertEquals(9, everCharacter.getHitPoints());
+    }
 }

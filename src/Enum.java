@@ -16,7 +16,7 @@ public class Enum {
     }
 
     public enum RaceEnum {
-        HUMAN, ORC, DWARF;
+        HUMAN, ORC, DWARF, ELF;
     }
 
 }

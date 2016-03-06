@@ -158,9 +158,7 @@ public class EverCraftCharacter {
     public void calculateHitPoints(int level){
         int constitutionModifier = abilities.getConstitutionModifier(abilities.getConstitutionScore());
 
-        if (raceEnum == Enum.RaceEnum.DWARF) {
-            constitutionModifier += 1;
-        }
+        constitutionModifier = calculateRaceConsitutionModifier(constitutionModifier);
 
         hitPoints += constitutionModifier;
 
@@ -184,7 +182,15 @@ public class EverCraftCharacter {
         }
     }
 
-
+    private int calculateRaceConsitutionModifier(int constitutionModifier) {
+        if (raceEnum == Enum.RaceEnum.DWARF) {
+            return constitutionModifier += 1;
+        } else if (raceEnum == Enum.RaceEnum.ELF) {
+            return constitutionModifier -= 1;
+        } else {
+            return constitutionModifier;
+        }
+    }
 
     private int getAttackRollModifier(int level) {
         int fractionalLevel = (level / 2);
