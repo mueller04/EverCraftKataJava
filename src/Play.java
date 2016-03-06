@@ -3,7 +3,7 @@ public class Play {
 
     public String roll(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber){
 
-        defendingCharacter.calculateHitPointsAndAttackStrength(isCritical(rollNumber));
+        defendingCharacter.calculateHitPointsAndAttackStrength(isCritical(rollNumber, attackingCharacter));
 
         useCharacterClassAbilities(defendingCharacter, attackingCharacter);
 
@@ -21,12 +21,21 @@ public class Play {
         }
     }
 
-    private boolean isCritical(int rollNumber) {
-        return (rollNumber >= 20);
+    public boolean isCritical(int rollNumber, EverCraftCharacter attackingCharacter) {
+        int criticalRange = attackingCharacter.getCriticalRange();
+
+        boolean isCritical = false;
+
+        for (int i = 0; i <= criticalRange; i++){
+            if (rollNumber >= 20 - i){
+                isCritical = true;
+            }
+        }
+        return isCritical;
     }
 
     private void hitCharacter(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int modifiedRollNumber){
-        int attackStrength = attackingCharacter.calculateHitPointsAndAttackStrength(isCritical(modifiedRollNumber));
+        int attackStrength = attackingCharacter.calculateHitPointsAndAttackStrength(isCritical(modifiedRollNumber, attackingCharacter));
         defendingCharacter.setHitPoints(defendingCharacter.getHitPoints() - attackStrength);
         defendingCharacter.updateLifeStatus();
         attackingCharacter.addExperiencePoints(10);

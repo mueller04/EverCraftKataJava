@@ -206,6 +206,10 @@ public class EverCraftCharacter {
         return attackRollModifier;
     }
 
+    public int getCriticalRange(){
+        return 0;
+    }
+
     public void clearFlags(){
         rogueHitAgainstEvilFlag = false;
         dwarfHitAgainstOrcFlag = false;

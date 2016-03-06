@@ -78,6 +78,66 @@ public class PlayTest {
         verify(mockAttackingChar).addExperiencePoints(10);
     }
 
+    @Test
+    public void adds1ToCriticalRangeForCriticalHits(){
+        //Arrange
+        Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(10);
+        Mockito.when(mockAttackingChar.getModifiedRollNumber(anyInt())).thenReturn(10);
+        Mockito.when(mockAttackingChar.getCriticalRange()).thenReturn(1);
+
+        //Act
+        boolean result = play.isCritical(19, mockAttackingChar);
+
+        //Assert
+        assertEquals(true, result);
+    }
+
+    @Test
+    public void twentyIsCriticalHitWithRangeOf0(){
+        //Arrange
+        Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(10);
+        Mockito.when(mockAttackingChar.getModifiedRollNumber(anyInt())).thenReturn(10);
+        Mockito.when(mockAttackingChar.getCriticalRange()).thenReturn(0);
+
+        //Act
+        boolean result = play.isCritical(20, mockAttackingChar);
+
+        //Assert
+        assertEquals(true, result);
+    }
+
+    @Test
+    public void rangeofZeroRoll19NotCriticalHit(){
+        //Arrange
+        Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(10);
+        Mockito.when(mockAttackingChar.getModifiedRollNumber(anyInt())).thenReturn(10);
+        Mockito.when(mockAttackingChar.getCriticalRange()).thenReturn(0);
+
+        //Act
+        boolean result = play.isCritical(19, mockAttackingChar);
+
+        //Assert
+        assertEquals(false, result);
+    }
+
+    @Test
+    public void rangeof2Roll18IsCriticalHit(){
+        //Arrange
+        Mockito.when(mockAttackingChar.getAbilities()).thenReturn(mockAbilities);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(10);
+        Mockito.when(mockAttackingChar.getModifiedRollNumber(anyInt())).thenReturn(10);
+        Mockito.when(mockAttackingChar.getCriticalRange()).thenReturn(2);
+
+        //Act
+        boolean result = play.isCritical(18, mockAttackingChar);
+
+        //Assert
+        assertEquals(true, result);
+    }
+
 
 
 }
