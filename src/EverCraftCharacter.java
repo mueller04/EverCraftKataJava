@@ -59,8 +59,9 @@ public class EverCraftCharacter {
         }
 
         int dexterityModifier = calculateDexterityModifier();
+        int wisdomModifier = calculcateWisdomModifier();
 
-        armor += dexterityModifier;
+        armor += (dexterityModifier + wisdomModifier);
         return armor;
     }
 
@@ -77,6 +78,18 @@ public class EverCraftCharacter {
             dexterityModifier += 1;
         }
         return dexterityModifier;
+    }
+
+    private int calculcateWisdomModifier() {
+        int value = 0;
+        if (characterClassEnum == Enum.CharacterClassEnum.MONK){
+            int wisdomScore = abilities.getWisdomScore();
+            int wisdomModifier = abilities.getWisdomModifier(wisdomScore);
+            if (wisdomModifier > 0) {
+                value = wisdomModifier;
+            }
+        }
+        return value;
     }
 
     public int getModifiedRollNumber(int rollNumber) {

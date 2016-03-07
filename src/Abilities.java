@@ -69,6 +69,8 @@ public class Abilities {
         return wisdomScore;
     }
 
+    public void setWisdomScore(int wisdomScore) { this.wisdomScore = wisdomScore; }
+
     public int getIntelligenceScore(){
         return intelligenceScore;
     }

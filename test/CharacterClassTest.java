@@ -195,4 +195,32 @@ public class CharacterClassTest {
         assertEquals(3, result);
     }
 
+    @Test
+    public void monkAddsPositiveWisdomToArmor(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Neutral);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.MONK);
+        everCharacter.getAbilities().setWisdomScore(17);
+
+        //Act
+        int result = everCharacter.getModifiedArmor();
+
+        //Assert
+        assertEquals(13, result);
+    }
+
+    @Test
+    public void monkDoesNotAddNegativeWisdomToArmor(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Neutral);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.MONK);
+        everCharacter.getAbilities().setWisdomScore(8);
+
+        //Act
+        int result = everCharacter.getModifiedArmor();
+
+        //Assert
+        assertEquals(10, result);
+    }
+
 }
