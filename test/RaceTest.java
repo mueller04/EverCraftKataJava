@@ -118,4 +118,17 @@ public class RaceTest {
         assertEquals(1, result);
     }
 
+    @Test
+    public void halflingAdds1ToDexterityModifier(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setRace(Enum.RaceEnum.HALFLING);
+
+        //Act
+        int result = everCharacter.getModifiedArmor();
+
+        //Assert
+        assertEquals(11, result);
+    }
+
 }

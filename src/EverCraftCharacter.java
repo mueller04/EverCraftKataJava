@@ -74,7 +74,7 @@ public class EverCraftCharacter {
                 dexterityModifier *=2;
             }
         }
-        if (raceEnum == Enum.RaceEnum.ELF) {
+        if (raceEnum == Enum.RaceEnum.ELF || raceEnum == Enum.RaceEnum.HALFLING) {
             dexterityModifier += 1;
         }
         return dexterityModifier;
