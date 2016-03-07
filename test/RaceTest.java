@@ -144,4 +144,17 @@ public class RaceTest {
         assertEquals(-1, result);
     }
 
+    @Test
+    public void halflingAlignmentCannotBeEvil(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Evil);
+        try {
+            //Act
+            everCharacter.setRace(Enum.RaceEnum.HALFLING);
+        } catch (Exception e) {
+            //Assert
+            assertEquals(e.getMessage(), "Halfling cannot have evil alignment");
+        }
+    }
+
 }

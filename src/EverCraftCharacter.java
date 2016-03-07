@@ -38,6 +38,13 @@ public class EverCraftCharacter {
         }
     }
 
+    public void setRace(Enum.RaceEnum raceEnum) {
+        if (alignment == Enum.Alignment.Evil && raceEnum == Enum.RaceEnum.HALFLING) {
+            throw new IllegalArgumentException("Halfling cannot have evil alignment");
+        }
+        this.raceEnum = raceEnum;
+    }
+
     private void setClassModifiers(){
         if (characterClassEnum == Enum.CharacterClassEnum.DEFENDER) {
             hitPoints *= 2;
@@ -302,5 +309,5 @@ public class EverCraftCharacter {
 
     public void setDwarfHitAgainstOrcFlag() { dwarfHitAgainstOrcFlag = true; }
 
-    public void setRace(Enum.RaceEnum raceEnum) { this.raceEnum = raceEnum; }
+
 }
