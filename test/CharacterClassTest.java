@@ -168,4 +168,17 @@ public class CharacterClassTest {
         assertEquals(27, hitPoints);
     }
 
+    @Test
+    public void warlordClassAdd2ToCriticalRange(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Neutral);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.WARLORD);
+
+        //Act
+        int result = everCharacter.getCriticalRange();
+
+        //Assert
+        assertEquals(2, result);
+    }
+
 }

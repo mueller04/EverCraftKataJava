@@ -12,11 +12,11 @@ public class Enum {
     }
 
     public enum CharacterClassEnum {
-        DEFAULT, DEFENDER, WARLORD, ROGUE;
+        DEFAULT, DEFENDER, WARLORD, ROGUE
     }
 
     public enum RaceEnum {
-        HUMAN, ORC, DWARF, ELF;
+        HUMAN, ORC, DWARF, ELF
     }
 
 }
