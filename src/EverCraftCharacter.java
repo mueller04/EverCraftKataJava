@@ -139,7 +139,7 @@ public class EverCraftCharacter {
         }
     }
 
-    private int calculateStrengthModifier(boolean isCritical){
+    public int calculateStrengthModifier(boolean isCritical){
         int strengthModifier = 0;
 
         if (characterClassEnum == Enum.CharacterClassEnum.ROGUE) {
@@ -151,6 +151,10 @@ public class EverCraftCharacter {
         } else {
             int strengthScore = this.getAbilities().getStrengthScore();
             strengthModifier = this.getAbilities().getStrengthModifier(strengthScore);
+        }
+
+        if (raceEnum == Enum.RaceEnum.HALFLING){
+            strengthModifier -= 1;
         }
 
         if (isCritical) {

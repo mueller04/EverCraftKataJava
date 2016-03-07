@@ -131,4 +131,17 @@ public class RaceTest {
         assertEquals(11, result);
     }
 
+    @Test
+    public void halflingSubtracts1FromStrengthModifier(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setRace(Enum.RaceEnum.HALFLING);
+
+        //Act
+        int result = everCharacter.calculateStrengthModifier(false);
+
+        //Assert
+        assertEquals(-1, result);
+    }
+
 }
