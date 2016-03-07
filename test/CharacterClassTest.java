@@ -181,4 +181,18 @@ public class CharacterClassTest {
         assertEquals(2, result);
     }
 
+
+    @Test
+    public void monkClassDoes3DamageWhenAttacking(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Neutral);
+        everCharacter.setCharacterClass(Enum.CharacterClassEnum.MONK);
+
+        //Act
+        int result = everCharacter.calculateHitPointsAndAttackStrength(false);
+
+        //Assert
+        assertEquals(3, result);
+    }
+
 }

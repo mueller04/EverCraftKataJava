@@ -90,14 +90,10 @@ public class EverCraftCharacter {
         int level = getLevel();
         calculateHitPoints(level);
 
-        int strengthModifier = calculateStrengthModifier();
-
-        if (isCritical) {
-            strengthModifier *= 2;
-        }
-
+        int standardAttack = calculateStandardAttack();
+        int strengthModifier = calculateStrengthModifier(isCritical);
         int attackRollLevelModifier = getAttackRollModifier(level);
-        int totalAttackScore = 1 + attackRollLevelModifier + strengthModifier;
+        int totalAttackScore = standardAttack + attackRollLevelModifier + strengthModifier;
 
         if (raceEnum == Enum.RaceEnum.ORC) {
             totalAttackScore += 2;
@@ -122,17 +118,32 @@ public class EverCraftCharacter {
         return totalAttackScore;
     }
 
-    private int calculateStrengthModifier(){
+    private int calculateStandardAttack(){
+        if (characterClassEnum == Enum.CharacterClassEnum.MONK) {
+            return 3;
+        } else {
+            return 1;
+        }
+    }
+
+    private int calculateStrengthModifier(boolean isCritical){
+        int strengthModifier = 0;
+
         if (characterClassEnum == Enum.CharacterClassEnum.ROGUE) {
             int dexterityScore = this.getAbilities().getDexterityScore();
-            return this.getAbilities().getDexterityModifier(dexterityScore);
+            strengthModifier = this.getAbilities().getDexterityModifier(dexterityScore);
         } else if (characterClassEnum == Enum.CharacterClassEnum.WARLORD) {
             int strengthScore = this.getAbilities().getStrengthScore();
-            return (this.getAbilities().getStrengthModifier(strengthScore) * 2);
+            strengthModifier = (this.getAbilities().getStrengthModifier(strengthScore) * 2);
         } else {
             int strengthScore = this.getAbilities().getStrengthScore();
-            return this.getAbilities().getStrengthModifier(strengthScore);
+            strengthModifier = this.getAbilities().getStrengthModifier(strengthScore);
         }
+
+        if (isCritical) {
+            strengthModifier *= 2;
+        }
+        return strengthModifier;
     }
 
     private int criticalHit(){
