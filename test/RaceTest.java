@@ -91,4 +91,31 @@ public class RaceTest {
         //Assert
         assertEquals(11, result);
     }
+
+    @Test
+    public void nonElfReturns0ForCriticalRange(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setRace(Enum.RaceEnum.DWARF);
+
+        //Act
+        int result = everCharacter.getCriticalRange();
+
+        //Assert
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void elfReturns1ForCriticalRange(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Example Name", Enum.Alignment.Good);
+        everCharacter.setRace(Enum.RaceEnum.ELF);
+
+        //Act
+        int result = everCharacter.getCriticalRange();
+
+        //Assert
+        assertEquals(1, result);
+    }
+
 }

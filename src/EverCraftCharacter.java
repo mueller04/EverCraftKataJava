@@ -207,7 +207,11 @@ public class EverCraftCharacter {
     }
 
     public int getCriticalRange(){
-        return 0;
+        if (raceEnum == Enum.RaceEnum.ELF){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public void clearFlags(){
