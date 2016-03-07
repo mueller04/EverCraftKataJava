@@ -59,6 +59,12 @@ public class Play {
                 && defendingCharacter.getRace() == Enum.RaceEnum.ORC) {
             attackingCharacter.setDwarfHitAgainstOrcFlag();
         }
+
+        if (attackingCharacter.getRace() != Enum.RaceEnum.HALFLING
+                && defendingCharacter.getRace() == Enum.RaceEnum.HALFLING) {
+            defendingCharacter.setHalflingIncreasedArmorFlag();
+        }
+
     }
 
     private void clearFlags(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter){

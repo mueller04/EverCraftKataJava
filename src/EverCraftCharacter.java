@@ -15,6 +15,7 @@ public class EverCraftCharacter {
 
     //Race Related
     private boolean dwarfHitAgainstOrcFlag = false;
+    private boolean halflingIncreasedArmorFlag = false;
 
     public EverCraftCharacter(String name, Enum.Alignment alignment){
         this.name = name;
@@ -61,7 +62,7 @@ public class EverCraftCharacter {
     public int getModifiedArmor(){
         int armor = 10;
 
-        if (raceEnum == Enum.RaceEnum.ORC){
+        if (raceEnum == Enum.RaceEnum.ORC || halflingIncreasedArmorFlag){
             armor += 2;
         }
 
@@ -260,6 +261,7 @@ public class EverCraftCharacter {
     public void clearFlags(){
         rogueHitAgainstEvilFlag = false;
         dwarfHitAgainstOrcFlag = false;
+        halflingIncreasedArmorFlag = false;
     }
 
     //Getters and Setters
@@ -309,5 +311,6 @@ public class EverCraftCharacter {
 
     public void setDwarfHitAgainstOrcFlag() { dwarfHitAgainstOrcFlag = true; }
 
+    public void setHalflingIncreasedArmorFlag() { this.halflingIncreasedArmorFlag = true; }
 
 }

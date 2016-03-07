@@ -214,4 +214,49 @@ public class IntegrationTests {
         assertEquals(2, everCharacter.getHitPoints());
     }
 
+    @Test
+    public void halflingPlus2ToArmorWhenNotBeingHitByHalfling(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Defending Character", Enum.Alignment.Neutral);
+        attackingEverCharacter = new EverCraftCharacter("Attacking Character", Enum.Alignment.Neutral);
+        everCharacter.setRace(Enum.RaceEnum.HALFLING);
+        attackingEverCharacter.setRace(Enum.RaceEnum.DWARF);
+
+        //Act
+        String result = play.roll(everCharacter, attackingEverCharacter, 11);
+
+        //Assert
+        assertEquals("attack glanced off the armor", result);
+    }
+
+    @Test
+    public void nonHalflingNoAdditionalArmorWhenAttackedByHalfling(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Defending Character", Enum.Alignment.Neutral);
+        attackingEverCharacter = new EverCraftCharacter("Attacking Character", Enum.Alignment.Neutral);
+        everCharacter.setRace(Enum.RaceEnum.ELF);
+        attackingEverCharacter.setRace(Enum.RaceEnum.DWARF);
+
+        //Act
+        String result = play.roll(everCharacter, attackingEverCharacter, 11);
+
+        //Assert
+        assertEquals("it's a hit", result);
+    }
+
+    @Test
+    public void halflingAttackedByOtherHalflingNoAdditionalArmor(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Defending Character", Enum.Alignment.Neutral);
+        attackingEverCharacter = new EverCraftCharacter("Attacking Character", Enum.Alignment.Neutral);
+        everCharacter.setRace(Enum.RaceEnum.HALFLING);
+        attackingEverCharacter.setRace(Enum.RaceEnum.HALFLING);
+
+        //Act
+        String result = play.roll(everCharacter, attackingEverCharacter, 11);
+
+        //Assert
+        assertEquals("it's a hit", result);
+    }
+
 }
