@@ -148,6 +148,7 @@ public class EverCraftCharacter {
         this.experiencePoints += experiencePoints;
     }
 
+
     public int getLevel() {
         int level = 1;
 
@@ -182,6 +183,7 @@ public class EverCraftCharacter {
         }
     }
 
+
     private int calculateLevelUpConstitutionModifier(int base, int constitutionModifier){
         if (raceEnum == Enum.RaceEnum.DWARF){
             return (base + (constitutionModifier * 2));
@@ -189,6 +191,7 @@ public class EverCraftCharacter {
             return (base + constitutionModifier);
         }
     }
+
 
     private int calculateRaceConsitutionModifier(int constitutionModifier) {
         if (raceEnum == Enum.RaceEnum.DWARF) {
@@ -200,11 +203,13 @@ public class EverCraftCharacter {
         }
     }
 
+
     private int getAttackRollModifier(int level) {
         int fractionalLevel = (level / 2);
         int attackRollModifier = (int)Math.floor(fractionalLevel);
         return attackRollModifier;
     }
+
 
     public int getCriticalRange(){
         if (raceEnum == Enum.RaceEnum.ELF){
@@ -245,10 +250,6 @@ public class EverCraftCharacter {
     }
 
     public Abilities getAbilities() { return abilities; }
-
-    public int getExperiencePoints(){
-        return experiencePoints;
-    }
 
     public void setExperiencePoints(int experiencePoints){
         this.experiencePoints = experiencePoints;
