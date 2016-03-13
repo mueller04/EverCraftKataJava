@@ -3,9 +3,10 @@ public class Play {
 
     public String roll(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter, int rollNumber){
 
-        defendingCharacter.calculateHitPointsAndAttackStrength(isCritical(rollNumber, attackingCharacter));
+        defendingCharacter.calculateHitPointsAndAttackStrength(false);
 
-        useCharacterClassAbilities(defendingCharacter, attackingCharacter);
+        setCharacterClassAbilities(defendingCharacter, attackingCharacter);
+        setWeaponAbilities(defendingCharacter, attackingCharacter);
 
         int modifiedRollNumber = attackingCharacter.getModifiedRollNumber(rollNumber);
 
@@ -41,7 +42,7 @@ public class Play {
         attackingCharacter.addExperiencePoints(10);
     }
 
-    private void useCharacterClassAbilities(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter){
+    private void setCharacterClassAbilities(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter){
         if (defendingCharacter.getCharacterClass() == Enum.CharacterClassEnum.DEFENDER){
             attackingCharacter.getAbilities().setStrengthScore(10);
         }
@@ -63,6 +64,12 @@ public class Play {
         if (attackingCharacter.getRace() != Enum.RaceEnum.HALFLING
                 && defendingCharacter.getRace() == Enum.RaceEnum.HALFLING) {
             defendingCharacter.setHalflingIncreasedArmorFlag();
+        }
+    }
+
+    private void setWeaponAbilities(EverCraftCharacter defendingCharacter, EverCraftCharacter attackingCharacter){
+        if (attackingCharacter.getWeapon() == Enum.Weapon.LONGSWORD && defendingCharacter.getRace() == Enum.RaceEnum.ORC){
+            attackingCharacter.setWarAxeAgainstOrcFlag();
         }
 
     }

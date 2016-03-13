@@ -259,4 +259,40 @@ public class IntegrationTests {
         assertEquals("it's a hit", result);
     }
 
+    @Test
+    public void longSwordAttackAgainstOrcAdds2ToDamage(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Defending Character", Enum.Alignment.Neutral);
+        attackingEverCharacter = new EverCraftCharacter("Attacking Character", Enum.Alignment.Neutral);
+        everCharacter.setRace(Enum.RaceEnum.ORC);
+        everCharacter.setHitPoints(20);
+        attackingEverCharacter.setRace(Enum.RaceEnum.HUMAN);
+        attackingEverCharacter.setWeapon(Enum.Weapon.LONGSWORD);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 12);
+        int result = everCharacter.getHitPoints();
+
+        //Assert
+        assertEquals(12, result);
+    }
+
+    @Test
+    public void longSwordElfAttackAgainstOrcAdds5ToDamage(){
+        //Arrange
+        everCharacter = new EverCraftCharacter("Defending Character", Enum.Alignment.Neutral);
+        attackingEverCharacter = new EverCraftCharacter("Attacking Character", Enum.Alignment.Neutral);
+        everCharacter.setRace(Enum.RaceEnum.ORC);
+        everCharacter.setHitPoints(20);
+        attackingEverCharacter.setRace(Enum.RaceEnum.ELF);
+        attackingEverCharacter.setWeapon(Enum.Weapon.LONGSWORD);
+
+        //Act
+        play.roll(everCharacter, attackingEverCharacter, 10);
+        int result = everCharacter.getHitPoints();
+
+        //Assert
+        assertEquals(7, result);
+    }
+
 }

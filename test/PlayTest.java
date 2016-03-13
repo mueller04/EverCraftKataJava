@@ -138,6 +138,21 @@ public class PlayTest {
         assertEquals(true, result);
     }
 
+    @Test
+    public void attackingCharWeaponWarAxeAgainstOrcCallsAttackAgainstOrcFlag(){
+        //Arrange
+        Mockito.when(mockAttackingChar.getWeapon()).thenReturn(Enum.Weapon.LONGSWORD);
+        Mockito.when(mockDefendingChar.getRace()).thenReturn(Enum.RaceEnum.ORC);
+        Mockito.when(mockDefendingChar.getModifiedArmor()).thenReturn(10);
+        Mockito.when(mockAttackingChar.getModifiedRollNumber(anyInt())).thenReturn(10);
+
+        //Act
+        play.roll(mockDefendingChar, mockAttackingChar, 10);
+
+        //Assert
+        verify(mockAttackingChar).setWarAxeAgainstOrcFlag();
+    }
+
 
 
 }

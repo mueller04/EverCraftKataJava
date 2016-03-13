@@ -121,7 +121,7 @@ public class CharacterClassTest {
             everCharacter.setCharacterClass(Enum.CharacterClassEnum.ROGUE);
         } catch (Exception e) {
             //Assert
-            assertEquals(e.getMessage(), "Warlord Class cannot have good or evil alignment");
+            assertEquals(e.getMessage(), "Rogue Class cannot have good or evil alignment");
         }
     }
 
@@ -134,7 +134,7 @@ public class CharacterClassTest {
             everCharacter.setCharacterClass(Enum.CharacterClassEnum.ROGUE);
         } catch (Exception e) {
             //Assert
-            assertEquals(e.getMessage(), "Warlord Class cannot have good or evil alignment");
+            assertEquals(e.getMessage(), "Rogue Class cannot have good or evil alignment");
         }
     }
 

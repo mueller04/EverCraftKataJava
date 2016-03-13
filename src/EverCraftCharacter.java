@@ -2,6 +2,7 @@
 public class EverCraftCharacter {
 
     private String name;
+    private Enum.Weapon weapon = Enum.Weapon.NOWEAPON;
     private Enum.Alignment alignment;
     private Enum.LifeStatus lifeStatus;
     private int experiencePoints = 0;
@@ -16,6 +17,9 @@ public class EverCraftCharacter {
     //Race Related
     private boolean dwarfHitAgainstOrcFlag = false;
     private boolean halflingIncreasedArmorFlag = false;
+
+    //Weapon Related
+    private boolean warAxeAgainstOrcFlag = false;
 
     public EverCraftCharacter(String name, Enum.Alignment alignment){
         this.name = name;
@@ -32,7 +36,7 @@ public class EverCraftCharacter {
         } else if (alignment == Enum.Alignment.Good && characterClass == Enum.CharacterClassEnum.WARLORD) {
             throw new IllegalArgumentException("Warlord Class cannot have good alignment");
         } else if ((alignment == Enum.Alignment.Good || alignment == Enum.Alignment.Evil) && characterClass == Enum.CharacterClassEnum.ROGUE) {
-            throw new IllegalArgumentException("Warlord Class cannot have good or evil alignment");
+            throw new IllegalArgumentException("Rogue Class cannot have good or evil alignment");
         } else {
             this.characterClassEnum = characterClass;
             setClassModifiers();
@@ -103,6 +107,16 @@ public class EverCraftCharacter {
     public int getModifiedRollNumber(int rollNumber) {
         int strengthScore = this.getAbilities().getStrengthScore();
         int strengthModifier = this.getAbilities().getStrengthModifier(strengthScore);
+
+        if (weapon == Enum.Weapon.WARAXE ||
+                (weapon == Enum.Weapon.LONGSWORD && raceEnum == Enum.RaceEnum.ELF) ){
+            rollNumber += 2;
+        }
+
+        if (weapon == Enum.Weapon.NUNCHUCKS && characterClassEnum != Enum.CharacterClassEnum.MONK){
+            rollNumber -= 4;
+        }
+
         return rollNumber + strengthModifier;
     }
 
@@ -114,19 +128,11 @@ public class EverCraftCharacter {
         int standardAttack = calculateStandardAttack();
         int strengthModifier = calculateStrengthModifier(isCritical);
         int attackRollLevelModifier = getAttackRollModifier(level);
-        int totalAttackScore = standardAttack + attackRollLevelModifier + strengthModifier;
+        int attackWeapon = calculateWeaponAttack();
+        int raceModifiedAttackScore = raceAttackModifier();
+        int totalAttackScore = standardAttack + attackRollLevelModifier
+                + strengthModifier + attackWeapon + raceModifiedAttackScore;
 
-        if (raceEnum == Enum.RaceEnum.ORC) {
-            totalAttackScore += 2;
-        }
-
-        if (rogueHitAgainstEvilFlag) {
-            totalAttackScore += 2;
-        }
-
-        if (dwarfHitAgainstOrcFlag) {
-            totalAttackScore += 2;
-        }
 
         if (isCritical) {
             totalAttackScore *= criticalHit();
@@ -139,12 +145,56 @@ public class EverCraftCharacter {
         return totalAttackScore;
     }
 
+    private int raceAttackModifier(){
+        int modifiedAttackScore = 0;
+        if (raceEnum == Enum.RaceEnum.ORC) {
+            modifiedAttackScore += 2;
+        }
+        if (rogueHitAgainstEvilFlag) {
+            modifiedAttackScore += 2;
+        }
+        if (dwarfHitAgainstOrcFlag) {
+            modifiedAttackScore += 2;
+        }
+        return modifiedAttackScore;
+    }
+
     private int calculateStandardAttack(){
         if (characterClassEnum == Enum.CharacterClassEnum.MONK) {
             return 3;
         } else {
             return 1;
         }
+    }
+
+    private int calculateWeaponAttack(){
+        int weaponAttack = 0;
+        if (weapon == Enum.Weapon.DAGGER) {
+            weaponAttack += 1;
+        }
+        if (weapon == Enum.Weapon.LONGSWORD && raceEnum == Enum.RaceEnum.ELF){
+            weaponAttack += 2;
+        }
+        if (weapon == Enum.Weapon.LONGSWORD) {
+            weaponAttack += 5;
+        }
+        if (weapon == Enum.Weapon.WARAXE) {
+            weaponAttack += 2;
+        }
+        if (raceEnum == Enum.RaceEnum.ELF && warAxeAgainstOrcFlag){
+            weaponAttack += 5;
+        } else if (warAxeAgainstOrcFlag){
+            weaponAttack += 2;
+        }
+        if (weapon == Enum.Weapon.NUNCHUCKS) {
+            weaponAttack += 6;
+        }
+
+        if (weapon == Enum.Weapon.KNIFEOFOGRESLAYING) {
+            weaponAttack += 10;
+        }
+
+        return weaponAttack;
     }
 
     public int calculateStrengthModifier(boolean isCritical){
@@ -172,11 +222,22 @@ public class EverCraftCharacter {
     }
 
     private int criticalHit(){
+        int value = 0;
         if (characterClassEnum == Enum.CharacterClassEnum.WARLORD || rogueHitAgainstEvilFlag) {
-            return 3;
-        } else  {
-            return 2;
+            value += 3;
         }
+
+        if (weapon == Enum.Weapon.WARAXE && characterClassEnum == Enum.CharacterClassEnum.ROGUE){
+            value += 4;
+        } else if (weapon == Enum.Weapon.WARAXE) {
+            value += 3;
+        }
+
+        if (value < 2){
+            value = 2;
+        }
+
+        return value;
     }
 
 
@@ -197,7 +258,6 @@ public class EverCraftCharacter {
 
         return level;
     }
-
 
 
     public void calculateHitPoints(int level){
@@ -262,6 +322,7 @@ public class EverCraftCharacter {
         rogueHitAgainstEvilFlag = false;
         dwarfHitAgainstOrcFlag = false;
         halflingIncreasedArmorFlag = false;
+        warAxeAgainstOrcFlag = false;
     }
 
     //Getters and Setters
@@ -313,4 +374,19 @@ public class EverCraftCharacter {
 
     public void setHalflingIncreasedArmorFlag() { this.halflingIncreasedArmorFlag = true; }
 
+    public Enum.Weapon getWeapon(){
+        return weapon;
+    }
+
+    public void setWeapon(Enum.Weapon weapon){
+        if (raceEnum == Enum.RaceEnum.HUMAN && weapon == Enum.Weapon.KNIFEOFOGRESLAYING){
+            //DO NOTHING
+        } else {
+            this.weapon = weapon;
+        }
+    }
+
+    public void setWarAxeAgainstOrcFlag(){
+        this.warAxeAgainstOrcFlag = true;
+    }
 }

@@ -19,4 +19,8 @@ public class Enum {
         HUMAN, ORC, DWARF, ELF, HALFLING
     }
 
+    public enum Weapon {
+        NOWEAPON, LONGSWORD, DAGGER, KNIFEOFOGRESLAYING, WARAXE, NUNCHUCKS
+    }
+
 }
