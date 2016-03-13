@@ -10,6 +10,7 @@ public class EverCraftCharacter {
     private Abilities abilities;
     private Enum.CharacterClassEnum characterClassEnum;
     private Enum.RaceEnum raceEnum;
+    private Enum.Armor armorEnum = Enum.Armor.NONE;
 
     //Class Related
     private boolean rogueHitAgainstEvilFlag = false;
@@ -70,6 +71,26 @@ public class EverCraftCharacter {
             armor += 2;
         }
 
+        if (armorEnum == Enum.Armor.LEATHER){
+            armor += 2;
+        }
+
+        if (armorEnum == Enum.Armor.PLATE){
+            armor += 8;
+        }
+
+        if (armorEnum == Enum.Armor.CHAINMAIL){
+            armor += 5;
+        }
+
+        if (armorEnum == Enum.Armor.SHIELD){
+            armor += 3;
+        }
+
+        if (armorEnum == Enum.Armor.CHAINMAIL && raceEnum == Enum.RaceEnum.ELF){
+            armor += 3;
+        }
+
         int dexterityModifier = calculateDexterityModifier();
         int wisdomModifier = calculcateWisdomModifier();
 
@@ -117,6 +138,10 @@ public class EverCraftCharacter {
             rollNumber -= 4;
         }
 
+        if (armorEnum == Enum.Armor.SHIELD){
+            rollNumber -= 3;
+        }
+
         return rollNumber + strengthModifier;
     }
 
@@ -155,6 +180,9 @@ public class EverCraftCharacter {
         }
         if (dwarfHitAgainstOrcFlag) {
             modifiedAttackScore += 2;
+        }
+        if (armorEnum == Enum.Armor.CHAINMAIL && raceEnum == Enum.RaceEnum.ELF){
+            modifiedAttackScore += 1;
         }
         return modifiedAttackScore;
     }
@@ -388,5 +416,17 @@ public class EverCraftCharacter {
 
     public void setWarAxeAgainstOrcFlag(){
         this.warAxeAgainstOrcFlag = true;
+    }
+
+    public Enum.Armor getArmor(){
+        return armorEnum;
+    }
+
+    public void setArmor(Enum.Armor armor){
+        if (raceEnum != Enum.RaceEnum.DWARF && armor == Enum.Armor.PLATE){
+            //DO NOTHING
+        } else {
+            this.armorEnum = armor;
+        }
     }
 }

@@ -23,4 +23,8 @@ public class Enum {
         NOWEAPON, LONGSWORD, DAGGER, KNIFEOFOGRESLAYING, WARAXE, NUNCHUCKS
     }
 
+    public enum Armor {
+        NONE, LEATHER, PLATE, CHAINMAIL, SHIELD
+    }
+
 }

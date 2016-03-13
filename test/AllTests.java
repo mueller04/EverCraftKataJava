@@ -9,7 +9,8 @@ import org.junit.runners.Suite.SuiteClasses;
         CharacterClassTest.class,
         RaceTest.class,
         IntegrationTests.class,
-        WeaponTest.class})
+        WeaponTest.class,
+        ArmorTest.class})
 
     public class AllTests {
     }
